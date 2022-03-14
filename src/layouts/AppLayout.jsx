@@ -1,12 +1,14 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../components/base/molecules/sidebar'
+import Navbar from '../components/Navbar'
 
 const AppLayout = () => {
     return (
         <div className="flex h-screen">
             <Sidebar />
-            <div className="p-4 w-full h-full">
+            <div className="w-full h-full">
+                <Navbar />
                 <Outlet />
             </div>
         </div>

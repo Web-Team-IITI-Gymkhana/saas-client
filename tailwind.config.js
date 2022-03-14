@@ -47,7 +47,14 @@ const baseConfig = {
                     900: '#05090E',
                     950: '#030407',
                     1000: '#010202',
+                    1100: '#141526',
+                    1200: '#121317',
+                    1300: '#09090c'
                 },
+                saasselected: '#2746ec',
+                saasbg: '#121317',
+                saasbgdark: '#09090c',
+                saasdisabled: '#808082',
                 skyblue: '#F5FAFF',
                 blue: {
                     purple: '#5501E1',
