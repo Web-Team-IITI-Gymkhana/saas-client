@@ -13,6 +13,9 @@ const baseConfig = {
             inner: 'inset 0 2px 4px 0 rgba(0, 3, 15, 0.06)',
             none: 'none',
         },
+        borderRadius: {
+            large: '2rem'
+        },
         extend: {
             fontSize: {
                 'base-lg': '1.065rem',
