@@ -12,11 +12,11 @@ const SidebarTopItem= ({
     <NavLink
       {...nativeProps}
       className={(navbar) =>
-        'flex items-center justify-center w-12 h-12 mt-2 rounded hover:bg-primary ' +
-        (navbar.isActive ? 'bg-primary' : '')
+        'flex items-center justify-center  w-full h-12 mt-2 w-full rounded-large p-4 hover:bg-saasselected ' +
+        (navbar.isActive ? 'bg-saasselected' : '')
       }
     >
-      {children || (icon && <FontAwesomeIcon icon={icon} />)}
+        {children || (icon && <FontAwesomeIcon icon={icon} />)}
     </NavLink>
   )
 }

@@ -5,11 +5,15 @@ import Navbar from '../components/Navbar'
 
 const AppLayout = () => {
     return (
-        <div className="flex h-screen">
+        <div className="flex h-screen bg-saasbg text-white">
             <Sidebar />
-            <div className="w-full h-full">
-                <Navbar />
-                <Outlet />
+            <div className="flex flex-col w-full h-full">
+                <div>
+                    <Navbar />
+                </div>
+                <div className='p-8 h-full rounded-tl-large bg-saasbgdark'>
+                    <Outlet />
+                </div>
             </div>
         </div>
     )
