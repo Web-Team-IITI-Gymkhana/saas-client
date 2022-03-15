@@ -3,7 +3,29 @@ import { useNavigate } from 'react-router-dom'
 
 import DashboardLayout from '@/layouts/Dashboard'
 import Button from '../base/atoms/Button'
+import { gql, useQuery } from '@apollo/client';
 
+function ExchangeRates() {
+  const { loading, error, data } = useQuery(gql`
+    {
+      rates(currency: "USD") {
+        currency
+        rate
+      }
+    }
+  `);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return data.rates.map(({ currency, rate }) => (
+    <div key={currency}>
+      <p>
+        {currency}: {rate}
+      </p>
+    </div>
+  ));
+}
 
 const Home= () => {
   const navigate = useNavigate()
@@ -20,7 +42,7 @@ const Home= () => {
         />
       }
     >
-      Table
+      <ExchangeRates />
     </DashboardLayout>
   )
 }
