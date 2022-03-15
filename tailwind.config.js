@@ -58,6 +58,7 @@ const baseConfig = {
                 saasbg: '#121317',
                 saasbgdark: '#09090c',
                 saasdisabled: '#808082',
+                saasselectedBT:'#4c6ef5',
                 skyblue: '#F5FAFF',
                 blue: {
                     purple: '#5501E1',
