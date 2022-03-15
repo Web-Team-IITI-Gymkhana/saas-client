@@ -69,6 +69,8 @@ const baseConfig = {
                 sans: '"Work Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
                 mono: '"SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace',
                 lab: "'Lab Grotesque', system-ui",
+                extra: ['Oswald'],
+                searchbar:['Cinzel']
             },
         },
     },
