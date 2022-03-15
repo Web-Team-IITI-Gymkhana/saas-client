@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 
 const AppLayout = () => {
     return (
-        <div className="flex h-screen bg-saasbg text-white">
+        <div className="flex h-screen bg-saasbg text-white overflow-hidden">
             <Sidebar />
             <div className="flex flex-col w-full h-full">
                 <div>
