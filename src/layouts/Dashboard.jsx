@@ -1,7 +1,6 @@
 import React from 'react'
 
 import RouteCrumb from '@/components/base/molecules/RouteCrumb'
-import { Scrollbars } from 'react-custom-scrollbars';
 
 const DashboardLayout = ({
   description,

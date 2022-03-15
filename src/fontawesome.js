@@ -21,9 +21,11 @@ import {
     faPlus,
     faSort,
     faUser,
+    faSearch
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
+    faSearch,
     faArrowsRotate,
     faArrowRightFromBracket,
     faBell,
