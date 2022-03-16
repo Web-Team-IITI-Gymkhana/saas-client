@@ -1,31 +1,32 @@
 const baseConfig = {
     darkMode: 'class',
     theme: {
-        boxShadow: {
-            sm: '0 1px 2px 0 rgba(0, 3, 15, 0.05)',
-            DEFAULT:
-                '0 1px 3px 0 rgba(0, 3, 15, 0.1), 0 1px 2px 0 rgba(0,3,15, 0.06)',
-            md: '0 4px 6px -1px rgba(0, 3, 15, 0.1), 0 2px 4px -1px rgba(0,3,15, 0.06)',
-            lg: '0 10px 15px -3px rgba(0, 3, 15, 0.1), 0 4px 6px -2px rgba(0,3,15, 0.05)',
-            xl: '0 20px 25px -5px rgba(0, 3, 15, 0.1), 0 10px 10px -5px rgba(0,3,15, 0.04)',
-            '2xl': '0 25px 50px -12px rgba(0, 3, 15, 0.25)',
-            '3xl': '0 35px 60px -15px rgba(0, 3, 15, 0.3)',
-            inner: 'inset 0 2px 4px 0 rgba(0, 3, 15, 0.06)',
-            none: 'none',
-        },
-        borderRadius: {
-            large: '2rem'
-        },
         extend: {
+            dropShadow: {
+                'lg': '0 10px 10px rgba(0, 0, 0, 0.25)',
+                '2xl': [
+                    '0 35px 35px rgba(0, 0, 0, 0.25)',
+                    '0 45px 45px rgba(0, 0, 0, 0.15)'
+                ]
+            },
+            boxShadow: {
+                sm: '0 1px 2px 0 rgba(0, 3, 15, 0.05)',
+                DEFAULT:
+                    'none',
+                md: '0 4px 6px -1px rgba(0, 3, 15, 0.1), 0 2px 4px -1px rgba(0,3,15, 0.06)',
+                lg: '0 10px 15px -3px rgba(0, 3, 15, 0.1), 0 4px 6px -2px rgba(0,3,15, 0.05)',
+                xl: '0 20px 25px -5px rgba(0, 3, 15, 0.1), 0 10px 10px -5px rgba(0,3,15, 0.04)',
+                '2xl': '0 25px 50px -12px rgba(0, 3, 15, 0.25)',
+                '3xl': '0 35px 60px -15px rgba(0, 3, 15, 0.3)',
+                inner: 'inset 0 2px 4px 0 rgba(0, 3, 15, 0.06)',
+                none: 'none',
+            },
+            borderRadius: {
+                large: '2rem'
+            },
             fontSize: {
                 'base-lg': '1.065rem',
                 'sm-base': '0.935rem',
-            },
-            screens: {
-                '2xl': { min: '1536px', max: '1936px' },
-                '3xl': { min: '1936px', max: '2436px' },
-                '4xl': { min: '2436px', max: '3236px' },
-                '5xl': { min: '3236px' },
             },
             colors: {
                 'saas-primary': "var(--primary)",
@@ -36,7 +37,7 @@ const baseConfig = {
                 'saas-header': "var(--header)"
             },
             fontFamily: {
-                sans: '"Work Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+                sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
                 mono: '"SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace',
                 lab: "'Lab Grotesque', system-ui",
                 extra: ['Oswald'],
@@ -51,7 +52,7 @@ const baseConfig = {
     ],
 }
 
-const config = {
+module.exports = {
     presets: [baseConfig],
     content: ['./index.html', './src/**/*.{vue,js,jsx,tsx}'],
     darkMode: 'class', // or 'media' or 'class'
@@ -89,11 +90,5 @@ const config = {
                 fadeIn: 'fadeIn 250ms ease-in-out',
             },
         },
-    },
-    plugins: [require('daisyui')],
-    daisyui: {
-        themes: false,
-    },
+    }
 }
-
-export default config
