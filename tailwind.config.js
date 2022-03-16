@@ -54,11 +54,14 @@ const baseConfig = {
                     1200: '#121317',
                     1300: '#09090c'
                 },
-                saasselected: '#2746ec',
-                saasbg: '#121317',
-                saasbgdark: '#09090c',
-                saasdisabled: '#808082',
-                saasselectedBT:'#4c6ef5',
+                saasselected: '#3547ac',
+                saasbg: '#f4f7ff',
+                saasbgdark: '#060d2a',
+                saasdisabled: '#b5b7c8',
+                saasselectedBT: '#3547ac',
+                saasbgmid: '#1b223d',
+                saaswhite: '#ffffff',
+                saastextdark: '#151517',
                 skyblue: '#F5FAFF',
                 blue: {
                     purple: '#5501E1',
@@ -70,7 +73,7 @@ const baseConfig = {
                 mono: '"SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace',
                 lab: "'Lab Grotesque', system-ui",
                 extra: ['Oswald'],
-                searchbar:['Cinzel']
+                searchbar: ['Cinzel']
             },
         },
     },

@@ -4,9 +4,13 @@ const { TabPane } = Tabs;
 
 function TabPaneComponent(props) {
   const { children, value, key, ...other } = props;
-  console.log(children)
+  console.log(children);
   return (
-    <TabPane {...other} tab={value} key={key}>
+    <TabPane
+      {...other}
+      tab={<div className="text-saasselected">{value}</div>}
+      key={key}
+    >
       {children}
     </TabPane>
   );
@@ -14,12 +18,9 @@ function TabPaneComponent(props) {
 function TabsComponent(props) {
   const { children, onChange, defaultKey, ...other } = props;
   return (
-    <Tabs {...other} onChange={onChange}  defaultActiveKey={defaultKey}>
-        {children}
+    <Tabs {...other} onChange={onChange} defaultActiveKey={defaultKey}>
+      {children}
     </Tabs>
   );
 }
-export {TabPaneComponent, TabsComponent}
-
-
-
+export { TabPaneComponent, TabsComponent };

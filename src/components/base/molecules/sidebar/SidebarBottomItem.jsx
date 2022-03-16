@@ -1,15 +1,15 @@
-import React from 'react'
-import Button from '../../atoms/Button'
+import React from 'react';
+import Button from '../../atoms/Button';
 
-const SidebarBottomItem= (
-  props
-) => {
+const SidebarBottomItem = ({ children, ...nativeProps }) => {
   return (
-    <Button
-      {...props}
-      className="flex items-center justify-center w-16 h-16 bg-gray-900 hover:bg-primary"
-    />
-  )
-}
+    <div
+      {...nativeProps}
+      className="flex justify-center w-full h-40 mb-3 bg-saasselected rounded-large"
+    >
+      {children}
+    </div>
+  );
+};
 
-export default SidebarBottomItem
+export default SidebarBottomItem;

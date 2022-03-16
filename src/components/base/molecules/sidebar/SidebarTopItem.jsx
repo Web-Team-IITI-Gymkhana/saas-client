@@ -1,24 +1,20 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const SidebarTopItem= ({
-  icon,
-  children,
-  ...nativeProps
-}) => {
+const SidebarTopItem = ({ icon, children, ...nativeProps }) => {
   return (
     <NavLink
       {...nativeProps}
       className={(navbar) =>
-        'flex items-center justify-center  w-full h-12 mt-2 w-full rounded-large p-4 hover:bg-saasselected ' +
-        (navbar.isActive ? 'bg-saasselected' : '')
+        'flex flex-row items-center w-full pt-3 pb-3 text-lg hover:text-bg-saasselected ' +
+        (navbar.isActive ? 'text-saasselected' : '')
       }
     >
-        {children || (icon && <FontAwesomeIcon icon={icon} />)}
+      <div className="mr-5">{icon && <FontAwesomeIcon icon={icon} />}</div>
+      {children}
     </NavLink>
-  )
-}
+  );
+};
 
-export default SidebarTopItem
+export default SidebarTopItem;

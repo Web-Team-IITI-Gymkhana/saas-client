@@ -1,1 +1,14 @@
 @import 'antd/dist/antd.css';
+.ant-tabs-nav {
+  font-family: inherit;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #3547ac;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #3547ac;
+}
+.ant-tabs-nav .ant-tabs-nav-wrap {
+  border-bottom: black 1px;
+}
