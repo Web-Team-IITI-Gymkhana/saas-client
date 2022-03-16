@@ -1,9 +1,9 @@
-import React from 'react'
-import classnames from 'classnames'
+import React from 'react';
+import classnames from 'classnames';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Button= (props) => {
+const Button = (props) => {
   const {
     text,
     icon,
@@ -13,21 +13,20 @@ const Button= (props) => {
     iconClasses,
     className,
     ...nativeProps
-  } = props
+  } = props;
   const classes = classnames({
-    'btn gap-2 text-base font-lab normal-case disabled:cursor-not-allowed disabled:opacity-50 disabled:text-white/100':
-      true,
+    'btn gap-2 text-base font-lab normal-case disabled:cursor-not-allowed disabled:opacity-50 disabled:text-white/100': true,
     'btn-block': block,
     'btn-outline': outline,
     'rounded-md': rounded,
-    [`${className}`]: className,
-  })
+    [`${className}`]: className
+  });
   return (
     <button {...nativeProps} className={classes}>
       {icon && <FontAwesomeIcon icon={icon} className={`${iconClasses}`} />}
       {text}
     </button>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

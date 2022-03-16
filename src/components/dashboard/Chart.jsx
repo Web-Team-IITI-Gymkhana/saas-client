@@ -5,6 +5,7 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  ResponsiveContainer,
   Tooltip
 } from 'recharts';
 
@@ -55,10 +56,13 @@ const data = [
 
 function Chart(props) {
   return (
-    <div className="h-80 w-80">
+    <ResponsiveContainer
+      width="w-80%"
+      height="h-60%"
+      minWidth={500}
+      minHeight={300}
+    >
       <AreaChart
-        width={750}
-        height={250}
         data={data}
         margin={{
           top: 20,
@@ -67,13 +71,37 @@ function Chart(props) {
           bottom: 10
         }}
       >
-        <CartesianGrid strokeDasharray="5 5" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Area type="monotone" dataKey="uv" stroke="#fca5a5" fill="#fecaca" />
+        <CartesianGrid
+          vertical="true"
+          horizontal="true"
+          strokeDasharray="5 5"
+        />
+        <XAxis
+          dataKey="name"
+          axisLine={{ stroke: 'white', strokeWidth: 2 }}
+          tick={{
+            stroke: 'white',
+            fontSize: 'small'
+          }}
+        />
+        <YAxis
+          axisLine={{ stroke: 'white', strokeWidth: 2 }}
+          tick={{
+            stroke: 'white'
+          }}
+        />
+        <Tooltip isAnimationActive={true} />
+        <Area
+          type="natural"
+          dataKey="uv"
+          activeDot={true}
+          isAnimationActive={true}
+          animationEasing="ease-in-out"
+          stroke="#00A2FF"
+          fill="#7B9FFA"
+        />
       </AreaChart>
-    </div>
+    </ResponsiveContainer>
   );
 }
 export default Chart;
