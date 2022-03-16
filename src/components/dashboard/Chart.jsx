@@ -78,16 +78,19 @@ function Chart(props) {
         />
         <XAxis
           dataKey="name"
-          axisLine={{ stroke: 'white', strokeWidth: 2 }}
+          axisLine={{ stroke: '#151517', strokeWidth: 1 }}
           tick={{
-            stroke: 'white',
-            fontSize: 'small'
+            stroke: '#151517',
+            fontSize: 'small',
+            strokeWidth: 0.5
           }}
         />
         <YAxis
-          axisLine={{ stroke: 'white', strokeWidth: 2 }}
+          axisLine={{ stroke: '#151517', strokeWidth: 1 }}
           tick={{
-            stroke: 'white'
+            stroke: '#151517',
+            fontSize: 'small',
+            strokeWidth: 0.5
           }}
         />
         <Tooltip isAnimationActive={true} />
