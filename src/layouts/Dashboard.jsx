@@ -4,7 +4,7 @@ import RouteCrumb from '@/components/base/molecules/RouteCrumb';
 
 const DashboardLayout = ({ description, cta, children }) => {
   return (
-    <div className="flex flex-col h-full w-full overflow-y-auto scroll-smooth hover:scroll-auto">
+    <div className="flex flex-col h-full w-full p-5 overflow-y-auto scroll-smooth hover:scroll-auto">
       <div className="flex justify-between items-center">
         <div>
           <RouteCrumb />

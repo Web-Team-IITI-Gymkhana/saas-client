@@ -7,8 +7,8 @@ const SidebarTopItem = ({ icon, children, ...nativeProps }) => {
     <NavLink
       {...nativeProps}
       className={(navbar) =>
-        'flex flex-row items-center w-full pt-3 pb-3 text-lg hover:text-bg-saasselected ' +
-        (navbar.isActive ? 'text-saasselected' : '')
+        'flex flex-row items-center w-full pt-3 pb-3 text-lg hover:text-saas-primary ' +
+        (navbar.isActive ? 'text-saas-primary' : '')
       }
     >
       <div className="mr-5">{icon && <FontAwesomeIcon icon={icon} />}</div>
