@@ -12,3 +12,7 @@
 .ant-tabs-nav .ant-tabs-nav-wrap {
   border-bottom: black 1px;
 }
+
+input [type='text']:focus #react-select-5-input {
+  box-shadow: none !important;
+}

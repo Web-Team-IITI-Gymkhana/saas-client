@@ -5,7 +5,7 @@ const SidebarBottomItem = ({ children, ...nativeProps }) => {
   return (
     <div
       {...nativeProps}
-      className="flex justify-center w-full h-40 mb-3 bg-saasselected rounded-large"
+      className="flex justify-center w-5/6 h-40 mb-8 bg-saasselected rounded-large text-white font"
     >
       {children}
     </div>

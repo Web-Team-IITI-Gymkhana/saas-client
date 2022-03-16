@@ -1,16 +1,22 @@
-import React from 'react'
+import React from 'react';
 
-import Logo from '@/assets/img/logo512.png'
+import Logo from '@/assets/img/logo512.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SidebarLogo = () => {
   return (
-    <a href="/app" className="flex items-center justify-center mt-3">
-      <div className="grid place-items-center mx-2 w-8 h-8 border-gray-600">
-        <img alt='logo' src={Logo} className="dark:hidden" />
-        <img alt='logo' src={Logo} className="hidden dark:flex" />
-      </div>
+    <a
+      href="/app"
+      className="flex items-center content-center justify-center pt-5 pb-5 text-white"
+    >
+      <FontAwesomeIcon
+        fontSize={60}
+        height={60}
+        width={60}
+        icon={'chart-pie'}
+      />
     </a>
-  )
-}
+  );
+};
 
-export default SidebarLogo
+export default SidebarLogo;
