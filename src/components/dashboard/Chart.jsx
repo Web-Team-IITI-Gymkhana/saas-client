@@ -111,10 +111,14 @@ function Chart({ title }) {
   };
 
   useEffect(() => {
-    const data = df.getYearlyFeatureData(title);
+    const data = df.getQuarterlyFeatureData(title);
     console.log('useeffect', data);
     setInitialState({ ...initialState, data: data });
   }, []);
+
+  if (initialState.data.length === 0) {
+    return <h3>Data Unavailable</h3>;
+  }
 
   return (
     <div className="highlight-bar-charts" style={{ userSelect: 'none' }}>

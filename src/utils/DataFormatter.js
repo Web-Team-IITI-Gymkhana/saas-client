@@ -24,12 +24,19 @@ export class DataFormatter {
     getQuarterlyFeatureData(featureName) {
         const list = []
         const quarters = Object.keys(data[this.companyId]['_10q'])
-        const featureDetails = Object.values(data[this.companyId]['_10q']).map(quarters => quarters.features[featureName])
+        const featureDetails = Object.values(data[this.companyId]['_10q']).map(quarters => {
+            if (isNaN(quarters.features[featureName])) {
+                return null
+            }
+            return quarters.features[featureName]
+        })
 
         // console.log(years)
-        // console.log(feature_details)
+        if (featureDetails.every(val => val !== null)) {
+            quarters.forEach((quarter, idx) => list.push({ quarter, [featureName]: featureDetails[idx] }))
+        }
 
-        quarters.forEach((quarter, idx) => list.push({ quarter, [featureName]: featureDetails[idx] }))
+        console.log(featureDetails)
 
         return list
     }
