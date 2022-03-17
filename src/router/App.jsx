@@ -4,6 +4,7 @@ import AppLayout from '@/components/layouts/AppLayout';
 
 const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
 const Analysis = lazy(() => import('@/components/dashboard/Analysis'));
+const SecFilling = lazy(() => import('@/components/dashboard/SecFilling'));
 
 // * When configuring routes refer to https://github.com/icd2k3/use-react-router-breadcrumbs
 export const routes = () => [
@@ -18,8 +19,14 @@ export const routes = () => [
       },
       {
         path: '/analysis',
-        breadcrumb: 'analysis',
+        breadcrumb: 'Analysis',
         element: <Analysis />,
+        caseSensitive: true
+      },
+      {
+        path: '/secfilling',
+        breadcrumb: 'SEC Fillings',
+        element: <SecFilling />,
         caseSensitive: true
       }
     ]
