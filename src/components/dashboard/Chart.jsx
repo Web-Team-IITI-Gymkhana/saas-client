@@ -14,50 +14,62 @@ import obj from '../../../demo.json';
 
 console.log(obj);
 
-const data = [
-  {
-    name: 2000,
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: 2001,
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: 2002,
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: 2003,
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: 2004,
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: 2005,
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: 2006,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-];
+import { DataFormatter } from '../../utils/DataFormatter';
+
+const df = new DataFormatter('1459417'); // initialise constructor with company id
+
+console.log(df.getQuarterlyFeatureData('CashAndCashEquivalents'));
+console.log(df.getYearlyFeatureData('CashAndCashEquivalents'));
+console.log(df.getYearlyFeatureData('Revenues'));
+console.log(df.getCompanyMetaData());
+
+// const data = df.getQuarterlyFeatureData('CashAndCashEquivalents');
+const data = df.getYearlyFeatureData('Revenues');
+
+// const data = [
+//   {
+//     name: '2020_Q1',
+//     uv: 4000,
+//     pv: 2400,
+//     amt: 2400
+//   },
+//   {
+//     name: '2020_Q2',
+//     uv: 3000,
+//     pv: 1398,
+//     amt: 2210
+//   },
+//   {
+//     name: '2020_Q3',
+//     uv: 2000,
+//     pv: 9800,
+//     amt: 2290
+//   },
+//   {
+//     name: '2021_Q1',
+//     uv: 2780,
+//     pv: 3908,
+//     amt: 2000
+//   },
+//   {
+//     name: '2021_Q2',
+//     uv: 1890,
+//     pv: 4800,
+//     amt: 2181
+//   },
+//   {
+//     name: '2021_Q3',
+//     uv: 2390,
+//     pv: 3800,
+//     amt: 2500
+//   },
+//   {
+//     name: '2022_Q1',
+//     uv: 3490,
+//     pv: 4300,
+//     amt: 2100
+//   }
+// ];
 
 const getAxisYDomain = (from, to, ref, offset) => {
   // console.log(from, to);
@@ -108,7 +120,12 @@ function Chart(props) {
       [refAreaLeft, refAreaRight] = [refAreaRight, refAreaLeft];
 
     // yAxis domain
-    const [bottom, top] = getAxisYDomain(refAreaLeft, refAreaRight, 'uv', 1);
+    const [bottom, top] = getAxisYDomain(
+      refAreaLeft,
+      refAreaRight,
+      Object.keys(data[0])[1],
+      1
+    );
 
     setInitialState((prevState) => ({
       ...prevState,
@@ -173,7 +190,7 @@ function Chart(props) {
             strokeDasharray="5 5"
           />
           <XAxis
-            dataKey="name"
+            dataKey={Object.keys(data[0])[0]}
             axisLine={{ stroke: '#151517', strokeWidth: 1 }}
             tick={{
               stroke: '#151517',
@@ -196,7 +213,7 @@ function Chart(props) {
           <Tooltip isAnimationActive={true} />
           <Area
             type="natural"
-            dataKey="uv"
+            dataKey={Object.keys(data[0])[1]}
             activeDot={true}
             isAnimationActive={true}
             animationEasing="ease-in-out"
