@@ -1,10 +1,8 @@
 import data from '../../demo.json'
-
 export class DataFormatter {
     constructor(companyId) {
         this.companyId = companyId
     }
-
     getCompanyMetaData() {
         return {
             Address: data[this.companyId]['Address'],
@@ -16,11 +14,9 @@ export class DataFormatter {
             URL: data[this.companyId]['URL']
         }
     }
-
     getAllFeatures() {
         return Object.keys(Object.values(data[this.companyId]['_10k'])[0].features)
     }
-
     getQuarterlyFeatureData(featureName) {
         const list = []
         const quarters = Object.keys(data[this.companyId]['_10q'])

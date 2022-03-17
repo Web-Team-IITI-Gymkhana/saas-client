@@ -13,23 +13,18 @@ import {
 import Checkbox from './Checkbox';
 
 import obj from '../../../demo.json';
+import { DataFormatter } from '../../utils/DataFormatter';
 
 console.log(obj);
 
-import { DataFormatter } from '../../utils/DataFormatter';
-
 const df = new DataFormatter('1459417'); // initialise constructor with company id
-
 // console.log(df.getQuarterlyFeatureData('CashAndCashEquivalents'));
 // console.log(df.getYearlyFeatureData('CashAndCashEquivalents'));
 console.log(df.getCompanyMetaData());
-
 const allFeatures = df.getAllFeatures();
-
 // const data = df.getQuarterlyFeatureData('CashAndCashEquivalents');
 // const data = df.getYearlyFeatureData(allFeatures[3]);
 // console.log(df.getYearlyFeatureData(allFeatures[3]));
-
 const getAxisYDomain = (from, to, ref, offset) => {
   // console.log(from, to);
   const refFrom = data.findIndex((x) => x.name === from);
@@ -37,17 +32,13 @@ const getAxisYDomain = (from, to, ref, offset) => {
   // console.log(refFrom + 1, refTo + 1);
   const refData = data.slice(refFrom + 1 - 1, refTo + 1);
   // console.log(refData);
-
   let [bottom, top] = [refData[0][ref], refData[0][ref]];
-
   refData.forEach((d) => {
     if (d[ref] > top) top = d[ref];
     if (d[ref] < bottom) bottom = d[ref];
   });
-
   return [(bottom | 0) - offset, (top | 0) + offset];
 };
-
 function Chart({ title }) {
   const [initialState, setInitialState] = useState({
     data: [],
@@ -77,11 +68,9 @@ function Chart({ title }) {
       }));
       return;
     }
-
     // xAxis domain
     if (refAreaLeft > refAreaRight)
       [refAreaLeft, refAreaRight] = [refAreaRight, refAreaLeft];
-
     // yAxis domain
     const [bottom, top] = getAxisYDomain(
       refAreaLeft,
@@ -89,7 +78,6 @@ function Chart({ title }) {
       Object.keys(data[0])[1],
       1
     );
-
     setInitialState((prevState) => ({
       ...prevState,
       refAreaLeft: '',
@@ -101,7 +89,6 @@ function Chart({ title }) {
       top
     }));
   };
-
   const zoomOut = () => {
     const { data } = initialState;
     setInitialState((prevState) => ({
