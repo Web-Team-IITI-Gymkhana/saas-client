@@ -11,7 +11,9 @@ const ChartLayout = ({ title, description, cta, children }) => {
         </div>
         {cta}
       </div>
-      <div className="w-full grow pt-10">{children || <Chart />}</div>
+      <div className="w-full grow pt-10">
+        {children || <Chart title={title} />}
+      </div>
     </div>
   );
 };
