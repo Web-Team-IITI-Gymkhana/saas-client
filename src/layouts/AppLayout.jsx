@@ -7,8 +7,10 @@ import Searchbar from '../components/dashboard/Searchbar';
 const AppLayout = () => {
   return (
     <div className="flex h-screen bg-saas-background text-saas-accent overflow-hidden">
-      <Sidebar />
-      <div className="flex flex-col w-full h-full">
+      <div className="flex h-full">
+        <Sidebar />
+      </div>
+      <div className="flex flex-col h-full  overflow-x-hidden overflow-y-auto mb-14">
         <DashboardLayout cta={<Searchbar />}>
           <Outlet />
         </DashboardLayout>
