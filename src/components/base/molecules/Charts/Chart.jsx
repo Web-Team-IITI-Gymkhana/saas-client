@@ -129,7 +129,7 @@ function Chart({ title }) {
         Zoom Out
       </button>
       <br />
-      <div class="flex justify-center mb-2">
+      <div className="flex justify-center mb-2">
         <Checkbox
           id="yearly_check"
           label="YEARLY"
