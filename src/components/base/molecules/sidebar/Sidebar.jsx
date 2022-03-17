@@ -8,10 +8,10 @@ import CompanyProfile from './CompanyProfile';
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-col items-center justify-between w-80 h-full overflow-hidden text-saasdisabled pr-3 pl-3">
+    <div className="flex flex-col items-center justify-between w-80 h-full overflow-hidden bg-saas-accent text-saas-main pr-3 pl-3">
       <div className="w-full">
         <SidebarLogo />
-        <div className="flex flex-col w-full pl-2 items-center mt-2 border-t border-saasbg">
+        <div className="flex flex-col w-full pl-2 items-center mt-2 border-t border-saas-header">
           <CompanyProfile>
             <div className="text-lg">ZOOM INC</div>
           </CompanyProfile>
