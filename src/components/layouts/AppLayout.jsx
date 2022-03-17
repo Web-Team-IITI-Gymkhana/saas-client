@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '@/components/base/molecules/sidebar';
 import DashboardLayout from './Dashboard';
-import Searchbar from '../components/dashboard/Searchbar';
+import Searchbar from '../base/atoms/Searchbar';
 
 const AppLayout = () => {
   return (
