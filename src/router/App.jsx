@@ -1,8 +1,9 @@
 import React, { lazy } from 'react';
-import AppLayout from '@/layouts/AppLayout';
-import { useRoutes } from 'react-router-dom';
+import { Navigate, useRoutes } from 'react-router-dom';
+import AppLayout from '@/components/layouts/AppLayout';
 
-const Dashboard = lazy(() => import('@/components/dashboard/Home'));
+const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
+const Analysis = lazy(() => import('@/components/dashboard/Analysis'));
 
 // * When configuring routes refer to https://github.com/icd2k3/use-react-router-breadcrumbs
 export const routes = () => [
@@ -10,18 +11,22 @@ export const routes = () => [
     element: <AppLayout />,
     children: [
       {
-        path: '/',
+        path: '/charts',
         breadcrumb: 'Charts',
         element: <Dashboard />,
-        children: [
-          {
-            path: 'charts',
-            element: <Dashboard />,
-            breadcrumb: 'Charts'
-          }
-        ]
+        caseSensitive: true
+      },
+      {
+        path: '/analysis',
+        breadcrumb: 'analysis',
+        element: <Analysis />,
+        caseSensitive: true
       }
     ]
+  },
+  {
+    path: '/',
+    element: <Navigate to="/charts" />
   }
 ];
 

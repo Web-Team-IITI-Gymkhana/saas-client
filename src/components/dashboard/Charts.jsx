@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tabs } from 'antd';
-import ChartLayout from './ChartLayout';
-import Searchbar from './Searchbar';
+
+import ChartLayout from '@/components/layouts/ChartLayout';
+import Searchbar from '@/components/base/atoms/Searchbar';
 
 import { DataFormatter } from '../../utils/DataFormatter';
 

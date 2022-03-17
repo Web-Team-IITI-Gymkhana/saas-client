@@ -1,5 +1,5 @@
 import React from 'react';
-import Chart from './Chart';
+import Chart from '../base/molecules/Charts/Chart';
 
 const ChartLayout = ({ title, description, cta, children }) => {
   return (
