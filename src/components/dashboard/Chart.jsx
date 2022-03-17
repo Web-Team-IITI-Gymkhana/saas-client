@@ -10,6 +10,8 @@ import {
   ReferenceArea
 } from 'recharts';
 
+import Checkbox from './Checkbox';
+
 import obj from '../../../demo.json';
 
 console.log(obj);
@@ -59,6 +61,10 @@ function Chart({ title }) {
     bottom2: 'dataMin-20',
     animation: true
   });
+
+  const [isYearlyChartSelected, setIsYearlyChartSelected] = useState(true);
+  const [isQuarterlyChartSelected, setIsQuarterlyChartSelected] =
+    useState(false);
 
   const zoom = () => {
     let { refAreaLeft, refAreaRight, data } = initialState;
@@ -110,14 +116,24 @@ function Chart({ title }) {
     }));
   };
 
+  const handleYearlyQuarterlyFilter = (e) => {
+    setIsYearlyChartSelected(!isYearlyChartSelected);
+    setIsQuarterlyChartSelected(!isQuarterlyChartSelected);
+  };
+
   useEffect(() => {
-    const data = df.getQuarterlyFeatureData(title);
-    console.log('useeffect', data);
+    let data;
+    if (isQuarterlyChartSelected) {
+      data = df.getQuarterlyFeatureData(title);
+    } else {
+      data = df.getYearlyFeatureData(title);
+    }
+
     setInitialState({ ...initialState, data: data });
-  }, []);
+  }, [isQuarterlyChartSelected, isYearlyChartSelected]);
 
   if (initialState.data.length === 0) {
-    return <h3>Data Unavailable</h3>;
+    return <h2>Data Unavailable</h2>;
   }
 
   return (
@@ -126,7 +142,24 @@ function Chart({ title }) {
         Zoom Out
       </button>
       <br />
+      <div class="flex justify-center mb-2">
+        <Checkbox
+          id="yearly_check"
+          label="YEARLY"
+          value="yearly"
+          checked={isYearlyChartSelected}
+          onChange={handleYearlyQuarterlyFilter}
+        />
+        <Checkbox
+          id="quarterly_check"
+          label="QUARTERLY"
+          value="quarterly"
+          checked={isQuarterlyChartSelected}
+          onChange={handleYearlyQuarterlyFilter}
+        />
+      </div>
       <hr />
+
       <ResponsiveContainer
         width="w-80%"
         height="h-60%"
@@ -137,9 +170,9 @@ function Chart({ title }) {
           data={initialState.data}
           margin={{
             top: 20,
-            right: 40,
-            left: 40,
-            bottom: 10
+            right: 70,
+            left: 70,
+            bottom: 20
           }}
           onMouseDown={(e) =>
             setInitialState({ ...initialState, refAreaLeft: e.activeLabel })

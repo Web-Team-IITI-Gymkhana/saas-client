@@ -32,11 +32,11 @@ export class DataFormatter {
         })
 
         // console.log(years)
+        // console.log(featureDetails)
+
         if (featureDetails.every(val => val !== null)) {
             quarters.forEach((quarter, idx) => list.push({ quarter, [featureName]: featureDetails[idx] }))
         }
-
-        console.log(featureDetails)
 
         return list
     }
@@ -44,9 +44,16 @@ export class DataFormatter {
     getYearlyFeatureData(featureName) {
         const list = []
         const years = Object.keys(data[this.companyId]['_10k'])
-        const featureDetails = Object.values(data[this.companyId]['_10k']).map(years => years.features[featureName])
-        years.forEach((year, idx) => list.push({ year, [featureName]: featureDetails[idx] }))
+        const featureDetails = Object.values(data[this.companyId]['_10q']).map(years => {
+            if (isNaN(years.features[featureName])) {
+                return null
+            }
+            return years.features[featureName]
+        })
 
+        if (featureDetails.every(val => val !== null)) {
+            years.forEach((year, idx) => list.push({ year, [featureName]: featureDetails[idx] }))
+        }
         return list
     }
 }
