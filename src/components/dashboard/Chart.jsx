@@ -10,6 +10,10 @@ import {
   ReferenceArea
 } from 'recharts';
 
+import obj from '../../../demo.json';
+
+console.log(obj);
+
 const data = [
   {
     name: 2000,
