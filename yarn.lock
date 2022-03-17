@@ -1611,6 +1611,63 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
+"@progress/kendo-draggable-common@dev":
+  version "0.2.0-dev.202203111250"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-draggable-common/-/kendo-draggable-common-0.2.0-dev.202203111250.tgz#46e2acf7a8636b1f8136da81a1a6e872049fee2d"
+  integrity sha512-V4a+cbVEIhirSrDKuVS5L8jf3kBlPTHn7MtlnQgCPWzxRIKtKs/eeB/Q3GucVIedvwklr6Su20yIMzIF3PPU2A==
+  dependencies:
+    tslib "^1.7.0"
+
+"@progress/kendo-popup-common@1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-popup-common/-/kendo-popup-common-1.9.0.tgz#cf363f91634b364cdb20997e6f85e5cf9cbc7d8a"
+  integrity sha512-03FmQtRI2le3x78N1szlhtUkOyruq9aSf2SYCoyvd72mX9V9yAbqsoKByuFDazEbjHyHFkAmj32GrimWHevLCg==
+
+"@progress/kendo-react-buttons@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-buttons/-/kendo-react-buttons-5.1.0.tgz#0d319a8ad75ed4161c9902279754b4aec1b8237e"
+  integrity sha512-zbOwGP0gBio7BqDnQsoGRrdQyiqPIg1j1MeUAlnCZJDWkyxclU8e0Zo2Z08By6a9Zc2XhhyOyyE/GFwFWCrwbw==
+  dependencies:
+    "@progress/kendo-react-common" "5.1.0"
+    "@progress/kendo-react-popup" "5.1.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-common@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-common/-/kendo-react-common-5.1.0.tgz#e1512077c13fbf910f3fa6ed62ca5b8aef4b9447"
+  integrity sha512-Xg84UynxvhG1LpLz9iLK/07txhmeZtxdZowP1ZaPzctpjk31uq6VNwNBrksE4qJMCQPgYuf7/3BQfH9z0tpaNQ==
+  dependencies:
+    "@progress/kendo-draggable-common" dev
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-inputs@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-inputs/-/kendo-react-inputs-5.1.0.tgz#4b2a9f39b1e087e7feaf370b3c17f1de4d741842"
+  integrity sha512-vyCZyc0vFxqJSf15hdzKfj3gsZRlb3qnKueUTiIRxoe3hcsXUCv+Zbn0ZYNLBadagMp58o//QZ6OK7YV9tk/7A==
+  dependencies:
+    "@progress/kendo-react-buttons" "5.1.0"
+    "@progress/kendo-react-common" "5.1.0"
+    "@progress/kendo-react-labels" "5.1.0"
+    "@progress/kendo-react-popup" "5.1.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-labels@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-labels/-/kendo-react-labels-5.1.0.tgz#161d7c15334b40c942515ea672a2b33dc4670af1"
+  integrity sha512-odRGU3MRtALTNJiBkOKoFVAOeH9kkI1nE7nRbjjZvuD7g66/drTjecqkWE+AyPvSz0lIc20OykuqL9GHJVJ9LQ==
+  dependencies:
+    "@progress/kendo-react-common" "5.1.0"
+    prop-types "^15.6.0"
+
+"@progress/kendo-react-popup@5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@progress/kendo-react-popup/-/kendo-react-popup-5.1.0.tgz#6faa5353f7e13254fd8c1ebcd0a1fff139fc966b"
+  integrity sha512-gOZ5B0D2IOdWQgJfL86ZtO6rPwpQuKZISF9u8ho32o5I66e7JcLvE88zTtLW2TtbJ/Xkp+N0w8XULvo18qinrg==
+  dependencies:
+    "@progress/kendo-popup-common" "1.9.0"
+    "@progress/kendo-react-common" "5.1.0"
+    prop-types "^15.6.0"
+
 "@rollup/plugin-babel@^5.2.0":
   version "5.3.1"
   resolved "https://registry.npmjs.org/@rollup/plugin-babel/-/plugin-babel-5.3.1.tgz"
@@ -9422,7 +9479,7 @@ tsconfig-paths@^3.12.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.8.1:
+tslib@^1.7.0, tslib@^1.8.1:
   version "1.14.1"
   resolved "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==

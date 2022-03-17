@@ -16,11 +16,16 @@ export default function AnimatedMulti() {
   const customStyles = {
     control: (base) => ({
       ...base,
-      borderRadius: '20px!important',
+      borderRadius: '20px !important',
       background: '#152033',
-      border: '0px!important',
+      // border: '0px!important',
       width: '200px',
-      boxShadow: 'none'
+      // boxShadow: 'none',
+      border: '1px solid black',
+      boxShadow: 'none',
+      '&:hover': {
+        border: '1px solid black'
+      }
     }),
     singleValue: (base) => ({
       ...base,
@@ -60,12 +65,13 @@ export default function AnimatedMulti() {
 
   const Placeholder = () => {
     return (
-      <div className="flex items-center flex-row justify-items-start gap-x-2  ">
+      <div className="flex items-center flex-row justify-items-start gap-x-2 ">
         <FontAwesomeIcon icon={'search'} />
         Company
       </div>
     );
   };
+
   return (
     <Select
       placeholder={<Placeholder />}
@@ -73,7 +79,7 @@ export default function AnimatedMulti() {
       onChange={setCompany}
       styles={customStyles}
       noOptionsMessage={() => 'No company in the database'}
-      className="text-center font-bold text-white border-0"
+      className="text-center font-bold text-white border-0 focus:ring-0"
       isClearable
       backspaceRemovesValue
       options={Companies}
