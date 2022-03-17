@@ -16,10 +16,10 @@ const Sidebar = () => {
             <div className="text-lg">ZOOM INC</div>
           </CompanyProfile>
           <div className="flex flex-col w-full pl-3 items-center">
-            <SidebarTopItem to="/" icon="chart-line">
+            <SidebarTopItem to="/charts" icon="chart-line">
               Charts
             </SidebarTopItem>
-            <SidebarTopItem to="/2" icon="brain">
+            <SidebarTopItem to="/analysis" icon="brain">
               Analysic
             </SidebarTopItem>
             <SidebarTopItem to="/3" icon="database">
