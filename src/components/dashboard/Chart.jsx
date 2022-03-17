@@ -10,24 +10,21 @@ import {
   ReferenceArea
 } from 'recharts';
 
+import Checkbox from './Checkbox';
+
 import obj from '../../../demo.json';
+import { DataFormatter } from '../../utils/DataFormatter';
 
 console.log(obj);
 
-import { DataFormatter } from '../../utils/DataFormatter';
-
 const df = new DataFormatter('1459417'); // initialise constructor with company id
-
 // console.log(df.getQuarterlyFeatureData('CashAndCashEquivalents'));
 // console.log(df.getYearlyFeatureData('CashAndCashEquivalents'));
 console.log(df.getCompanyMetaData());
-
 const allFeatures = df.getAllFeatures();
-
 // const data = df.getQuarterlyFeatureData('CashAndCashEquivalents');
 // const data = df.getYearlyFeatureData(allFeatures[3]);
 // console.log(df.getYearlyFeatureData(allFeatures[3]));
-
 const getAxisYDomain = (from, to, ref, offset) => {
   // console.log(from, to);
   const refFrom = data.findIndex((x) => x.name === from);
@@ -35,17 +32,13 @@ const getAxisYDomain = (from, to, ref, offset) => {
   // console.log(refFrom + 1, refTo + 1);
   const refData = data.slice(refFrom + 1 - 1, refTo + 1);
   // console.log(refData);
-
   let [bottom, top] = [refData[0][ref], refData[0][ref]];
-
   refData.forEach((d) => {
     if (d[ref] > top) top = d[ref];
     if (d[ref] < bottom) bottom = d[ref];
   });
-
   return [(bottom | 0) - offset, (top | 0) + offset];
 };
-
 function Chart({ title }) {
   const [initialState, setInitialState] = useState({
     data: [],
@@ -60,6 +53,10 @@ function Chart({ title }) {
     animation: true
   });
 
+  const [isYearlyChartSelected, setIsYearlyChartSelected] = useState(true);
+  const [isQuarterlyChartSelected, setIsQuarterlyChartSelected] =
+    useState(false);
+
   const zoom = () => {
     let { refAreaLeft, refAreaRight, data } = initialState;
 
@@ -71,11 +68,9 @@ function Chart({ title }) {
       }));
       return;
     }
-
     // xAxis domain
     if (refAreaLeft > refAreaRight)
       [refAreaLeft, refAreaRight] = [refAreaRight, refAreaLeft];
-
     // yAxis domain
     const [bottom, top] = getAxisYDomain(
       refAreaLeft,
@@ -83,7 +78,6 @@ function Chart({ title }) {
       Object.keys(data[0])[1],
       1
     );
-
     setInitialState((prevState) => ({
       ...prevState,
       refAreaLeft: '',
@@ -95,7 +89,6 @@ function Chart({ title }) {
       top
     }));
   };
-
   const zoomOut = () => {
     const { data } = initialState;
     setInitialState((prevState) => ({
@@ -110,11 +103,25 @@ function Chart({ title }) {
     }));
   };
 
+  const handleYearlyQuarterlyFilter = (e) => {
+    setIsYearlyChartSelected(!isYearlyChartSelected);
+    setIsQuarterlyChartSelected(!isQuarterlyChartSelected);
+  };
+
   useEffect(() => {
-    const data = df.getYearlyFeatureData(title);
-    console.log('useeffect', data);
+    let data;
+    if (isQuarterlyChartSelected) {
+      data = df.getQuarterlyFeatureData(title);
+    } else {
+      data = df.getYearlyFeatureData(title);
+    }
+
     setInitialState({ ...initialState, data: data });
-  }, []);
+  }, [isQuarterlyChartSelected, isYearlyChartSelected]);
+
+  if (initialState.data.length === 0) {
+    return <h2>Data Unavailable</h2>;
+  }
 
   return (
     <div className="highlight-bar-charts" style={{ userSelect: 'none' }}>
@@ -122,7 +129,24 @@ function Chart({ title }) {
         Zoom Out
       </button>
       <br />
+      <div class="flex justify-center mb-2">
+        <Checkbox
+          id="yearly_check"
+          label="YEARLY"
+          value="yearly"
+          checked={isYearlyChartSelected}
+          onChange={handleYearlyQuarterlyFilter}
+        />
+        <Checkbox
+          id="quarterly_check"
+          label="QUARTERLY"
+          value="quarterly"
+          checked={isQuarterlyChartSelected}
+          onChange={handleYearlyQuarterlyFilter}
+        />
+      </div>
       <hr />
+
       <ResponsiveContainer
         width="w-80%"
         height="h-60%"
@@ -133,9 +157,9 @@ function Chart({ title }) {
           data={initialState.data}
           margin={{
             top: 20,
-            right: 40,
-            left: 40,
-            bottom: 10
+            right: 70,
+            left: 70,
+            bottom: 20
           }}
           onMouseDown={(e) =>
             setInitialState({ ...initialState, refAreaLeft: e.activeLabel })
