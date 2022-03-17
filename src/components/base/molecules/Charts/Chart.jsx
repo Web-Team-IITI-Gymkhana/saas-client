@@ -10,10 +10,10 @@ import {
   ReferenceArea
 } from 'recharts';
 
-import Checkbox from './Checkbox';
+import Checkbox from '@/components/base/atoms/Checkbox';
 
-import obj from '../../../demo.json';
-import { DataFormatter } from '../../utils/DataFormatter';
+import obj from '../../../../../demo.json';
+import { DataFormatter } from '@/utils/DataFormatter';
 
 console.log(obj);
 
