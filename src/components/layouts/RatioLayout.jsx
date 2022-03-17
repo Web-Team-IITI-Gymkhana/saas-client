@@ -1,13 +1,14 @@
 import React from 'react';
-import Chart from '../base/molecules/Charts/Chart';
+import BarChart from '../base/molecules/Charts/BarChart';
+import LineChart from '../base/molecules/Charts/LineChart';
 
 const RatioLayout = ({ title, description, cta, children }) => {
   const DefaultComponent = ({ title }) => {
     return (
       <div className="flex- flex-col">
-        <Chart title={title} />
-        <Chart title={title} />
-        <Chart title={title} />
+        <BarChart title={title} />
+        <BarChart title={title} />
+        <LineChart title={title} />
       </div>
     );
   };
