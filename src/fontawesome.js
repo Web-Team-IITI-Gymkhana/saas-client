@@ -25,6 +25,10 @@ import {
     faChartLine,
     faChartBar,
     faDashboard,
+    faBuilding,
+    faGlobe,
+    faPhone,
+    faFax
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -53,5 +57,9 @@ library.add(
     faSort,
     faUser,
     faGithub,
-    faGoogle
+    faGoogle,
+    faBuilding,
+    faGlobe,
+    faPhone,
+    faFax
 )

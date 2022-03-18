@@ -4,6 +4,7 @@ import SidebarLogo from './SidebarLogo';
 import SidebarTopItem from './SidebarTopItem';
 import SidebarBottomItem from './SidebarBottomItem';
 import CompanyProfile from './CompanyProfile';
+import { Navigate } from 'react-router-dom';
 // import { CircularProgress } from '@mui/material';
 
 const Sidebar = () => {
@@ -12,9 +13,9 @@ const Sidebar = () => {
       <div className="w-full">
         <SidebarLogo />
         <div className="flex flex-col w-full pl-2 items-center mt-2 border-t border-saas-header">
-          <CompanyProfile>
-            <div className="text-lg">ZOOM INC</div>
-          </CompanyProfile>
+            <CompanyProfile>
+              <div className="text-lg">ZOOM INC</div>
+            </CompanyProfile>
           <div className="flex flex-col w-full pl-3 items-center">
             <SidebarTopItem to="/charts" icon="chart-line">
               Charts
