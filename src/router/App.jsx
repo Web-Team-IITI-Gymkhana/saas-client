@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import AppLayout from '@/components/layouts/AppLayout';
 
+const Info = lazy(() => import('@/components/dashboard/Info'));
 const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
 const Analysis = lazy(() => import('@/components/dashboard/Analysis'));
 const SecFilling = lazy(() => import('@/components/dashboard/SecFilling'));
@@ -11,6 +12,12 @@ export const routes = () => [
   {
     element: <AppLayout />,
     children: [
+      {
+        path: '/info',
+        breadcrumb: 'Profile',
+        element: <Info />,
+        caseSensitive: true
+      },
       {
         path: '/charts',
         breadcrumb: 'Charts',
@@ -33,7 +40,7 @@ export const routes = () => [
   },
   {
     path: '/',
-    element: <Navigate to="/charts" />
+    element: <Navigate to="/info" />
   }
 ];
 

@@ -11,7 +11,9 @@ export class DataFormatter {
             HoldingType: data[this.companyId]['HoldingType'],
             IPODate: data[this.companyId]['IPODate'],
             PhoneNumber: data[this.companyId]['PhoneNumber'],
-            URL: data[this.companyId]['URL']
+            URL: data[this.companyId]['URL'],
+            Ticker: data[this.companyId]['Ticker'],
+            Exchange: data[this.companyId]['Exchange']
         }
     }
     getAllFeatures() {
