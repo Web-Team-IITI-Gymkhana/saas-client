@@ -1,13 +1,20 @@
 import React from 'react';
-import Chart from '../base/molecules/Charts/Chart';
+import { MATRICS } from '../../constants';
+import { chartDataGenerator } from '../../utils/ChartDataGenerator';
+import BarChart from '../base/molecules/Charts/BarChart';
+import LineChart from '../base/molecules/Charts/LineChart';
 
-const RatioLayout = ({ title, description, cta, children }) => {
+const RatioLayout = ({ id, formData, title, description, cta, children }) => {
+  const matrics = MATRICS[id];
+  const matricsData = chartDataGenerator(id, formData);
   const DefaultComponent = ({ title }) => {
     return (
-      <div className="flex- flex-col">
-        <Chart title={title} />
-        <Chart title={title} />
-        <Chart title={title} />
+      <div className="flex flex-col">
+        {matrics.dependency.map((dep, index) => {
+          const data = chartDataGenerator(dep, formData);
+          return <BarChart key={index} title={title} label={dep} data={data} />;
+        })}
+        <LineChart title={title} data={matricsData} label={id} />
       </div>
     );
   };
