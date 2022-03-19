@@ -15,10 +15,10 @@ const Summary = ({ summaryList }) => {
         {summaryList.map(({ sentiment, date, sentence }, key) => (
           <div
             key={key}
-            className={`bg-saas-header scale-90 transition  duration-500 hover:scale-100 flex flex-col  text-slate-100 italic    hover:bg-saas-primary hover:text-sky-50 cursor-auto drop-shadow-lg hover:drop-shadow-sm w-full   p-2 my-2 rounded-lg font-semibold cursor-default`}
+            className={`text-xs hover:text-2xs bg-saas-header scale-95 transition  duration-500 hover:scale-100 flex flex-col  text-slate-100 italic    hover:bg-saas-primary hover:text-sky-50 cursor-auto drop-shadow-lg hover:drop-shadow-sm w-full   p-2 my-1 rounded-lg font-semibold cursor-default`}
           >
             <div className="flex flex-row justify-between mb-1">
-              <div className="px-2 text-slate-100 text-sm rounded-lg font-bold 0 not-italic">
+              <div className="px-1 text-slate-100  rounded-lg font-bold 0 not-italic">
                 {date.split('-').reverse().join('-')}
               </div>
               <div className={`${color[sentiment]} px-3 rounded-lg not-italic`}>
