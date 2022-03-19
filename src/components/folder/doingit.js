@@ -1,4 +1,5 @@
 function get_filings(obj, curPath) {
+
   let children = [];
 
   // console.log(obj.sec_filing)
@@ -20,11 +21,21 @@ function get_year(obj, curPath) {
   let children = [];
   // console.log(Object.keys(obj));
   // Object.keys(obj).forEach((name) =>
-  for (let name of Object.keys(obj)) {
+  /*for (let name of Object.keys(obj)) {
+    console.log(name)
     children.push({
       name: name,
       path: `${curPath}`,
       children: get_filings(obj[name], `${curPath}${name}/`),
+      isFolder: true,
+      content: null
+    });*/
+  for (let item of obj) {
+    //  console.log(item)
+    children.push({
+      name: item.id,
+      path: `${curPath}`,
+      children: get_filings(item, `${curPath}${item.id}/`),
       isFolder: true,
       content: null
     });
@@ -53,6 +64,7 @@ function get_forms(obj) {
 }
 
 const generateRootFolder = (obj) => {
+  //console.log(obj)
   return {
     name: 'root',
     path: '',
