@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Tabs } from 'antd';
 import RatioLayout from '@/components/layouts/RatioLayout';
-import dummy from '../../../demo.json';
 import { generateMatricsData } from '../../utils/MatrixDataGenerator';
 import { MATRICS } from '../../constants';
 import { isInsufficientData } from '../../utils/utils';
@@ -40,7 +39,7 @@ const Analysis = () => {
               tab={id}
               key={index + 1}
             >
-              <RatioLayout id={id} formData={formDataK} title={id} />
+              <RatioLayout label={id} formData={formDataK} title={id} />
             </TabPane>
           );
         }
@@ -50,7 +49,7 @@ const Analysis = () => {
             tab={id}
             key={index + 1}
           >
-            <RatioLayout id={id} formData={formDataQ} title={id} />
+            <RatioLayout label={id} formData={formDataQ} title={id} />
           </TabPane>
         );
       })}

@@ -15,118 +15,26 @@ import { ErrorBoundary } from 'react-error-boundary';
 const animatedComponents = makeAnimated();
 
 export default function AnimatedMulti({ style_prop }) {
-  const [Company, setCompany] = useState();
   const [searchText, setSearchText] = useState(null);
   const myContext = useContext(Context);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  /*query getCompanyByCIK($cik: String!) {
-          getCompanyByCIK(cik: $cik) {
-            id
-            CompanyName
-            Address
-            FaxNumber
-            HoldingType
-            PhoneNumber
-            URL
-            IPODate
-            exchange
-            ticker
-            _10k {
-              id
-              DocURL
-              FilingDate
-              FilingForDate
-              features {
-                ARR
-                CashAndCashEquivalents
-                CostOfSales
-                GAAPRevenue
-                Goodwill
-                GrossProfit
-                GrossPropertyAndEquipment
-                MRR
-                MarketableSecurities
-                NetIncome
-                NetLoss
-                NonGAAPEarnings
-                OperatingIncome
-                PropertyAndEquipmentNet
-                RecurringRevenue
-                Revenues
-                SalesAndMarketing
-                SharesOutstanding
-                StockPrice
-                TotalAssets
-                TotalCurrentAssets
-                TotalCurrentLiabilities
-                TotalDebt
-                TotalEquity
-                TotalOperatingExpenses
-                TotalStockholdersEquity
-              }
-              sec_filing {
-                name
-                url
-              }
-            }
-            _10q {
-              id
-              DocURL
-              FilingDate
-              FilingForDate
-              features {
-                ARR
-                CashAndCashEquivalents
-                CostOfSales
-                GAAPRevenue
-                Goodwill
-                GrossProfit
-                GrossPropertyAndEquipment
-                MRR
-                MarketableSecurities
-                NetIncome
-                NetLoss
-                NonGAAPEarnings
-                OperatingIncome
-                PropertyAndEquipmentNet
-                RecurringRevenue
-                Revenues
-                SalesAndMarketing
-                SharesOutstanding
-                StockPrice
-                TotalAssets
-                TotalCurrentAssets
-                TotalCurrentLiabilities
-                TotalDebt
-                TotalEquity
-                TotalOperatingExpenses
-                TotalStockholdersEquity
-              }
-              sec_filing {
-                name
-                url
-              }
-            }
-          }
-  }*/
-
   useEffect(() => {
     const fetchCompany = async () => {
-      const companyCIK = `${searchText}`;
-
       try {
-        const res =
-          searchText !== '' &&
-          (await client.query({
-            query: query,
-            variables: {
-              cik: companyCIK
-            },
-            // pollInterval: 500
-            refetchQueries: [{ query }]
-          }));
+        const companyCIK = `${searchText}`;
+        if (searchText === null || searchText === '') {
+          return;
+        }
+        const res = await client.query({
+          query: query,
+          variables: {
+            cik: companyCIK
+          },
+          // pollInterval: 500
+          refetchQueries: [{ query }]
+        });
 
         myContext.setSelectedCompany(res.data.getCompanyByCIK);
         setLoading(false);
