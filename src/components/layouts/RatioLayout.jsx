@@ -12,9 +12,18 @@ const RatioLayout = ({ id, formData, title, description, cta, children }) => {
       <div className="flex flex-col">
         {matrics.dependency.map((dep, index) => {
           const data = chartDataGenerator(dep, formData);
-          return <BarChart key={index} title={title} label={dep} data={data} />;
+          return (
+            <div
+              key={index}
+              style={{ width: 'var(--chart-w)', height: 'var(--chart-h)' }}
+            >
+              <BarChart title={title} label={dep} data={data} />
+            </div>
+          );
         })}
-        <LineChart title={title} data={matricsData} label={id} />
+        <div style={{ width: 'var(--chart-w)', height: 'var(--chart-h)' }}>
+          <LineChart title={title} data={matricsData} label={id} />
+        </div>
       </div>
     );
   };
