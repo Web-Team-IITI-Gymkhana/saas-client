@@ -1,67 +1,42 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { transparent } from 'daisyui/src/colors';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import makeAnimated from 'react-select/animated';
-import client from '../../../apollo/index';
 import { companyList } from '../../../utils/companies';
-import { query } from '../../../apollo/queries';
 import Context from '../../../context/context-config';
 import Loading from '../atoms/Loading';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { getCompanyDataFromCIK } from '../../../utils/utils';
-
-const animatedComponents = makeAnimated();
+import Button from '@/components/base/atoms/Button';
 
 export default function AnimatedMulti({ style_prop }) {
-  const [searchText, setSearchText] = useState(null);
+  const [companyCIKs, setCompanyCIKs] = useState([]);
   const myContext = useContext(Context);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchCompany = async () => {
-      const companyCIK = `${searchText}`;
-      // try {
-      //   if (searchText === null || searchText === '') {
-      //     return;
-      //   }
-      //   const res = await client.query({
-      //     query: query,
-      //     variables: {
-      //       cik: companyCIK
-      //     },
-      //     // pollInterval: 500
-      //     refetchQueries: [{ query }]
-      //   });
-
-      // myContext.setSelectedCompany(res.data.getCompanyByCIK);
-      // setLoading(false);
-      // navigate('/info');
-      // } catch (err) {
-      //   console.error(err);
-      // }
-
-      try {
-        const { res, error } = await getCompanyDataFromCIK(companyCIK);
-        // console.log(data);
-        if (error) throw error;
-        myContext.setSelectedCompany(res.data.getCompanyByCIK);
-        setLoading(false);
-        navigate('/info');
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    fetchCompany();
-  }, [searchText]);
-
-  const handleInputChange = (e) => {
-    setSearchText(e.value);
+  const handleInputChange = async (e) => {
+    if (e.length === 0) {
+      navigate('/app');
+      return;
+    }
+    const companiesCIK = e.map((company) => company.value);
+    setCompanyCIKs(companiesCIK);
+    try {
+      const promise = [];
+      companiesCIK.forEach((cik) => {
+        promise.push(getCompanyDataFromCIK(`${cik}`));
+      });
+      console.log('promise', promise);
+      const companies = await Promise.all(promise);
+      console.log('comp', companies);
+      myContext.setSelectedCompanies(companies);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      navigate('/app');
+    }
   };
 
   const customStyles = {
@@ -117,14 +92,6 @@ export default function AnimatedMulti({ style_prop }) {
   };
 
   const Placeholder = () => {
-    const companyCIK = `${searchText}`;
-    /*const { loading, error, data } = useQuery(query, {
-      variables: {
-        cik: companyCIK
-      },
-      partialRefetch: true
-    });*/
-    //console.log(data);
     return (
       <div className="flex items-center flex-row justify-items-start gap-x-2 ">
         <FontAwesomeIcon icon={'search'} />
@@ -148,10 +115,10 @@ export default function AnimatedMulti({ style_prop }) {
       FallbackComponent={ErrorFallback}
       onReset={() => {
         // reset the state of your app so the error doesn't happen again
-        setSearchText('');
+        setCompanyCIKs([]);
       }}
     >
-      <div className="flex 1-p">
+      <div className="flex flex-col p-1">
         <Select
           placeholder={<Placeholder />}
           label="Single select"
@@ -160,6 +127,7 @@ export default function AnimatedMulti({ style_prop }) {
             handleInputChange(e);
           }}
           styles={customStyles}
+          isMulti
           noOptionsMessage={() => 'No company in the database'}
           className="text-center font-bold text-white border-0 focus:ring-0"
           isClearable
@@ -168,6 +136,15 @@ export default function AnimatedMulti({ style_prop }) {
           autoFocus={true}
           on
         />
+        {companyCIKs.length > 0 ? (
+          <Button
+            text="View Charts"
+            type="primary"
+            onClick={() => {
+              navigate('/charts');
+            }}
+          />
+        ) : null}
         {loading && <Loading />}
       </div>
     </ErrorBoundary>

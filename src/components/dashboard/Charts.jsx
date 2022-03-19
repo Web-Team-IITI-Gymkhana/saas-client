@@ -11,27 +11,27 @@ const { TabPane } = Tabs;
 
 const Home = () => {
   const myContext = useContext(Context);
-  const Company = myContext.selectedCompany;
-
-  if (!Company) {
+  const Companies = myContext.selectedCompanies;
+  if (!Companies || !Companies.length) {
     return <div>No Company Selected</div>;
   }
   if (
-    !Company._10k ||
-    !Company._10q ||
-    Company._10k.length === 0 ||
-    Company._10q.length === 0
+    !Companies[0]._10k ||
+    !Companies[0]._10q ||
+    Companies[0]._10k.length === 0 ||
+    Companies[0]._10q.length === 0
   ) {
     return <div>No Data Available</div>;
   }
-  const formDataK = Company._10k;
-  const formDataQ = Company._10q;
+  const companiesName = Companies.map((company) => company.CompanyName);
+  const formDataK = Companies.map((company) => company._10k);
+  const formDataQ = Companies.map((company) => company._10q);
 
   return (
     <Tabs className="text-saasdisabled h-full" defaultActiveKey="1">
       {Object.keys(FEATURES).map((label, index) => {
-        if (isInsufficientData(formDataQ, 'features', label)) {
-          if (isInsufficientData(formDataK, 'features', label)) {
+        if (isInsufficientData(formDataQ[0], 'features', label)) {
+          if (isInsufficientData(formDataK[0], 'features', label)) {
             return null;
           }
           return (
@@ -40,7 +40,11 @@ const Home = () => {
               tab={label}
               key={index + 1}
             >
-              <ChartLayout label={label} formData={formDataK} />
+              <ChartLayout
+                names={companiesName}
+                label={label}
+                formData={formDataK}
+              />
             </TabPane>
           );
         }
@@ -50,7 +54,11 @@ const Home = () => {
             tab={label}
             key={index + 1}
           >
-            <ChartLayout label={label} formData={formDataQ} />
+            <ChartLayout
+              names={companiesName}
+              label={label}
+              formData={formDataQ}
+            />
           </TabPane>
         );
       })}

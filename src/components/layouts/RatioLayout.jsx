@@ -3,15 +3,16 @@ import { MATRICS } from '../../constants';
 import { chartDataGenerator } from '../../utils/ChartDataGenerator';
 import SyncedChart from '../base/molecules/Charts/SyncedChart';
 
-const RatioLayout = ({ label, formData, title }) => {
+const RatioLayout = ({ names, label, formData, title }) => {
   const matrics = MATRICS[label];
-  const matricsData = chartDataGenerator(label, formData);
+  const chartType = names.length > 1 ? 'bar' : 'area';
+  const matricsData = formData.map((fd) => chartDataGenerator(label, fd));
   const DefaultComponent = () => {
     const makeRatioId = `id${label}${label}`;
     return (
       <div className="flex flex-col">
         {matrics.dependency.map((dep, index) => {
-          const data = chartDataGenerator(dep, formData);
+          const chartsData = formData.map((fd) => chartDataGenerator(dep, fd));
           const makeId = `id${label}${dep}`;
           return (
             <div
@@ -20,11 +21,12 @@ const RatioLayout = ({ label, formData, title }) => {
               style={{ height: 'var(--chart-h)' }}
             >
               <SyncedChart
-                data={data}
+                names={names}
+                data={chartsData}
                 label={dep}
                 id={makeId}
                 group={label}
-                type={'area'}
+                type={chartType}
                 width="var(--chart-w)"
                 height="var(--chart-h)"
               />
@@ -33,11 +35,12 @@ const RatioLayout = ({ label, formData, title }) => {
         })}
         <div className="w-11/12" style={{ height: 'var(--chart-h)' }}>
           <SyncedChart
+            names={names}
             id={makeRatioId}
             data={matricsData}
             label={label}
             group={label}
-            type={'area'}
+            type={chartType}
             width="var(--chart-w)"
             height="var(--chart-h)"
           />

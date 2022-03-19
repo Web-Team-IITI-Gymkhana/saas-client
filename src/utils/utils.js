@@ -31,13 +31,9 @@ export const isInsufficientData = (form, key, feature) => {
 }
 
 export const getCompanyDataFromCIK = async (companyCIK) => {
-
-    let error = null;
-    let data = null;
     try {
         if (companyCIK === null || companyCIK === '') {
-            error = "Company CIK is null or undefined"
-            throw error
+            return
         }
         const res = await client.query({
             query: query,
@@ -47,13 +43,10 @@ export const getCompanyDataFromCIK = async (companyCIK) => {
             // pollInterval: 500
             refetchQueries: [{ query }]
         });
-
-        data = res
+        console.log(res)
+        return res.data.getCompanyByCIK
     } catch (err) {
-        error = err
         console.error(err);
         throw err
     }
-
-    return { res: data, error }
 }
