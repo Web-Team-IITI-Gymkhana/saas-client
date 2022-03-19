@@ -1,30 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { transparent } from 'daisyui/src/colors';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import client from '../../../apollo/index';
 import { companyList } from '../../../utils/companies';
 import { gql } from '@apollo/client';
-
-// const GET_COMPANY = async(e.value) => {
-//   if (e.value == '') {
-//     return [];
-//   }
-// }
-// const res = await client.query({
-//   query {
-//   getCompanyByCIK(cik: "1013462") {
-//     CompanyName
-//   }
-// }
-// });
+import Context from '../../../context/context-config';
 
 const animatedComponents = makeAnimated();
 
 export default function AnimatedMulti() {
   const [Company, setCompany] = useState();
   const [searchText, setSearchText] = useState('');
+  const myContext = useContext(Context);
+
+  /*query getCompanyByCIK($cik: String!) {
+          getCompanyByCIK(cik: $cik) {
+            CompanyName
+          }
+  }*/
 
   useEffect(() => {
     const fetchCompany = async () => {
@@ -33,7 +28,92 @@ export default function AnimatedMulti() {
       const query = gql`
         query getCompanyByCIK($cik: String!) {
           getCompanyByCIK(cik: $cik) {
+            id
             CompanyName
+            Address
+            FaxNumber
+            HoldingType
+            PhoneNumber
+            URL
+            IPODate
+            exchange
+            ticker
+            _10k {
+              id
+              DocURL
+              FilingDate
+              FilingForDate
+              features {
+                ARR
+                CashAndCashEquivalents
+                CostOfSales
+                GAAPRevenue
+                Goodwill
+                GrossProfit
+                GrossPropertyAndEquipment
+                MRR
+                MarketableSecurities
+                NetIncome
+                NetLoss
+                NonGAAPEarnings
+                OperatingIncome
+                PropertyAndEquipmentNet
+                RecurringRevenue
+                Revenues
+                SalesAndMarketing
+                SharesOutstanding
+                StockPrice
+                TotalAssets
+                TotalCurrentAssets
+                TotalCurrentLiabilities
+                TotalDebt
+                TotalEquity
+                TotalOperatingExpenses
+                TotalStockholdersEquity
+              }
+              sec_filing {
+                name
+                url
+              }
+            }
+            _10q {
+              id
+              DocURL
+              FilingDate
+              FilingForDate
+              features {
+                ARR
+                CashAndCashEquivalents
+                CostOfSales
+                GAAPRevenue
+                Goodwill
+                GrossProfit
+                GrossPropertyAndEquipment
+                MRR
+                MarketableSecurities
+                NetIncome
+                NetLoss
+                NonGAAPEarnings
+                OperatingIncome
+                PropertyAndEquipmentNet
+                RecurringRevenue
+                Revenues
+                SalesAndMarketing
+                SharesOutstanding
+                StockPrice
+                TotalAssets
+                TotalCurrentAssets
+                TotalCurrentLiabilities
+                TotalDebt
+                TotalEquity
+                TotalOperatingExpenses
+                TotalStockholdersEquity
+              }
+              sec_filing {
+                name
+                url
+              }
+            }
           }
         }
       `;
@@ -45,7 +125,7 @@ export default function AnimatedMulti() {
         }
       });
 
-      console.log(res.data);
+      myContext.setSelectedCompany(res.data.getCompanyByCIK);
     };
 
     fetchCompany();
