@@ -5,9 +5,10 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import client from '../../../apollo/index';
 import { companyList } from '../../../utils/companies';
-import { gql, useQuery } from '@apollo/client';
 import { query } from '../../../apollo/queries';
 import Context from '../../../context/context-config';
+
+import { ErrorBoundary } from 'react-error-boundary';
 
 const animatedComponents = makeAnimated();
 
@@ -25,17 +26,23 @@ export default function AnimatedMulti() {
   useEffect(() => {
     const fetchCompany = async () => {
       const companyCIK = `${searchText}`;
-      console.log(companyCIK);
 
-      const res = await client.query({
-        query: query,
-        variables: {
-          cik: companyCIK
-        }
-        // pollInterval: 500
-      });
+      try {
+        const res =
+          searchText !== '' &&
+          (await client.query({
+            query: query,
+            variables: {
+              cik: companyCIK
+            },
+            // pollInterval: 500
+            refetchQueries: [{ query }]
+          }));
 
-      myContext.setSelectedCompany(res.data.getCompanyByCIK);
+        myContext.setSelectedCompany(res.data.getCompanyByCIK);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchCompany();
@@ -112,22 +119,40 @@ export default function AnimatedMulti() {
     );
   };
 
+  function ErrorFallback({ error, resetErrorBoundary }) {
+    return (
+      <div role="alert">
+        <p>Something went wrong:</p>
+        <pre>{error.message}</pre>
+        <button onClick={resetErrorBoundary}>Try again</button>
+      </div>
+    );
+  }
+
   return (
-    <Select
-      placeholder={<Placeholder />}
-      label="Single select"
-      isSearchable={true}
-      onChange={(e) => {
-        handleInputChange(e);
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        // reset the state of your app so the error doesn't happen again
+        setSearchText('');
       }}
-      styles={customStyles}
-      noOptionsMessage={() => 'No company in the database'}
-      className="text-center font-bold text-white border-0 focus:ring-0"
-      isClearable
-      backspaceRemovesValue
-      options={companyList}
-      autoFocus={true}
-      on
-    />
+    >
+      <Select
+        placeholder={<Placeholder />}
+        label="Single select"
+        isSearchable={true}
+        onChange={(e) => {
+          handleInputChange(e);
+        }}
+        styles={customStyles}
+        noOptionsMessage={() => 'No company in the database'}
+        className="text-center font-bold text-white border-0 focus:ring-0"
+        isClearable
+        backspaceRemovesValue
+        options={companyList}
+        autoFocus={true}
+        on
+      />
+    </ErrorBoundary>
   );
 }
