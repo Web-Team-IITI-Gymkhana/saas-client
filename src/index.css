@@ -46,3 +46,10 @@
 .summary {
   height: 75vh;
 }
+#react-select-3-input:focus-visible {
+  box-shadow: none !important;
+}
+
+#react-select-5-input:focus-visible {
+  box-shadow: none !important;
+}
