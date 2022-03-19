@@ -20,6 +20,9 @@ const Sidebar = () => {
             <SidebarTopItem to="/charts" icon="chart-line">
               Charts
             </SidebarTopItem>
+            <SidebarTopItem to="/summary" icon="chart-line">
+              Summary
+            </SidebarTopItem>
             <SidebarTopItem to="/analysis" icon="brain">
               Analysis
             </SidebarTopItem>
