@@ -1,25 +1,114 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { transparent } from 'daisyui/src/colors';
 import React, { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import client from '../../../apollo/index';
 import { companyList } from '../../../utils/companies';
 import { query } from '../../../apollo/queries';
 import Context from '../../../context/context-config';
+import Loading from '../atoms/Loading';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
 const animatedComponents = makeAnimated();
 
-export default function AnimatedMulti() {
+export default function AnimatedMulti({ style_prop }) {
   const [Company, setCompany] = useState();
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(null);
   const myContext = useContext(Context);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   /*query getCompanyByCIK($cik: String!) {
           getCompanyByCIK(cik: $cik) {
+            id
             CompanyName
+            Address
+            FaxNumber
+            HoldingType
+            PhoneNumber
+            URL
+            IPODate
+            exchange
+            ticker
+            _10k {
+              id
+              DocURL
+              FilingDate
+              FilingForDate
+              features {
+                ARR
+                CashAndCashEquivalents
+                CostOfSales
+                GAAPRevenue
+                Goodwill
+                GrossProfit
+                GrossPropertyAndEquipment
+                MRR
+                MarketableSecurities
+                NetIncome
+                NetLoss
+                NonGAAPEarnings
+                OperatingIncome
+                PropertyAndEquipmentNet
+                RecurringRevenue
+                Revenues
+                SalesAndMarketing
+                SharesOutstanding
+                StockPrice
+                TotalAssets
+                TotalCurrentAssets
+                TotalCurrentLiabilities
+                TotalDebt
+                TotalEquity
+                TotalOperatingExpenses
+                TotalStockholdersEquity
+              }
+              sec_filing {
+                name
+                url
+              }
+            }
+            _10q {
+              id
+              DocURL
+              FilingDate
+              FilingForDate
+              features {
+                ARR
+                CashAndCashEquivalents
+                CostOfSales
+                GAAPRevenue
+                Goodwill
+                GrossProfit
+                GrossPropertyAndEquipment
+                MRR
+                MarketableSecurities
+                NetIncome
+                NetLoss
+                NonGAAPEarnings
+                OperatingIncome
+                PropertyAndEquipmentNet
+                RecurringRevenue
+                Revenues
+                SalesAndMarketing
+                SharesOutstanding
+                StockPrice
+                TotalAssets
+                TotalCurrentAssets
+                TotalCurrentLiabilities
+                TotalDebt
+                TotalEquity
+                TotalOperatingExpenses
+                TotalStockholdersEquity
+              }
+              sec_filing {
+                name
+                url
+              }
+            }
           }
   }*/
 
@@ -40,6 +129,8 @@ export default function AnimatedMulti() {
           }));
 
         myContext.setSelectedCompany(res.data.getCompanyByCIK);
+        setLoading(false);
+        navigate('/info');
       } catch (err) {
         console.error(err);
       }
@@ -55,10 +146,12 @@ export default function AnimatedMulti() {
   const customStyles = {
     control: (base) => ({
       ...base,
+      ...style_prop,
       borderRadius: '20px !important',
-      background: transparent,
+      background: '#ffffff',
       // border: '0px!important',
-      width: '200px',
+      width: style_prop ? style_prop.width : '200px',
+
       // boxShadow: 'none',
       border: '1px solid black',
       boxShadow: 'none',
@@ -79,15 +172,15 @@ export default function AnimatedMulti() {
       background: state.isSelected
         ? '#6A31FF'
         : state.isFocused
-        ? '#301772'
-        : '#152033',
-      color: state.isFocused ? '#F2F5FF' : 'white'
+        ? '#3547AC'
+        : '#F2F5FF',
+      color: state.isFocused ? '#ffffff' : '#301772'
     }),
     menu: (provided) => ({
       ...provided,
-      background: '#152033',
+      background: '#ffffff',
 
-      color: '#ffffff'
+      color: '#152033'
     }),
     noOptionsMessage: (provided) => ({
       ...provided,
@@ -137,22 +230,25 @@ export default function AnimatedMulti() {
         setSearchText('');
       }}
     >
-      <Select
-        placeholder={<Placeholder />}
-        label="Single select"
-        isSearchable={true}
-        onChange={(e) => {
-          handleInputChange(e);
-        }}
-        styles={customStyles}
-        noOptionsMessage={() => 'No company in the database'}
-        className="text-center font-bold text-white border-0 focus:ring-0"
-        isClearable
-        backspaceRemovesValue
-        options={companyList}
-        autoFocus={true}
-        on
-      />
+      <div className="flex 1-p">
+        <Select
+          placeholder={<Placeholder />}
+          label="Single select"
+          isSearchable={true}
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+          styles={customStyles}
+          noOptionsMessage={() => 'No company in the database'}
+          className="text-center font-bold text-white border-0 focus:ring-0"
+          isClearable
+          backspaceRemovesValue
+          options={companyList}
+          autoFocus={true}
+          on
+        />
+        {loading && <Loading />}
+      </div>
     </ErrorBoundary>
   );
 }

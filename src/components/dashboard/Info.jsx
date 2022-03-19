@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import InfoLayout from '../layouts/InfoLayout';
+import Context from '../../context/context-config';
 
 import { DataFormatter } from '../../utils/DataFormatter';
 
-const df = new DataFormatter('1459417');
-const meta_data = df.getCompanyMetaData();
+const Info = (props) => {
 
-function Info(props) {
+  const myContext = useContext(Context)
+  const curCompany = myContext.selectedCompany
+  console.log(curCompany)
+
+  const meta_data = {
+    Address: curCompany['Address'],
+    CompanyName: curCompany['CompanyName'],
+    FaxNumber: curCompany['FaxNumber'],
+    HoldingType: curCompany['HoldingType'],
+    IPODate: curCompany['IPODate'],
+    PhoneNumber: curCompany['PhoneNumber'],
+    URL: curCompany['URL'],
+    Ticker: curCompany['ticker'],
+    Exchange: curCompany['exchange']
+  }
+
   return <InfoLayout data={meta_data} />;
 }
 

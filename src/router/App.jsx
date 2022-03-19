@@ -7,9 +7,22 @@ const Info = lazy(() => import('@/components/dashboard/Info'));
 const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
 const Analysis = lazy(() => import('@/components/dashboard/Analysis'));
 const SecFilling = lazy(() => import('@/components/dashboard/SecFilling'));
+const LandingPage = lazy(() => import('@/components/dashboard/Landing'));
 
 // * When configuring routes refer to https://github.com/icd2k3/use-react-router-breadcrumbs
 export const routes = () => [
+  {
+    element: <LandingPage />,
+    children: [
+      {
+        path: '/app',
+        breadcrumb: 'Landing Page',
+        element: <LandingPage />,
+        caseSensitive: true
+      }
+    ]
+  },
+
   {
     element: <AppLayout />,
     children: [
@@ -36,12 +49,13 @@ export const routes = () => [
         breadcrumb: ' SEC Fillings ',
         element: <SecFilling />,
         caseSensitive: true
-      }
+      },
+
     ]
   },
   {
     path: '/',
-    element: <Navigate to="/info" />
+    element: <Navigate to="/app" />
   }
 ];
 
