@@ -113,10 +113,14 @@ function calculateMetricsPerFilling(features, previous) {
     }
 }
 function generateMatricsData(form) {
-    const yearsList = Object.keys(form)
-    yearsList.forEach((year, index) => {
-        form[year].matrics = calculateMetricsPerFilling(form[year].features, (form[yearsList[index - 1]] ? form[yearsList[index - 1]].features : NOT_DEFINED))
+    if (!form || form.length === 0) {
+        return []
+    }
+    const updatedForm = []
+    form.forEach((year, index) => {
+        const matrics = calculateMetricsPerFilling(year.features, (form[index - 1] ? form[index - 1].features : NOT_DEFINED))
+        updatedForm.push({ ...year, matrics: matrics })
     })
-    return form
+    return updatedForm
 }
 export { generateMatricsData }

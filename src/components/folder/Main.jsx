@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import rootFolderObject from './doingit';
+import { generateRootFolder } from './doingit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FolderList from './FolderList';
 import BreadCrumb from './BreadCrumb';
 
-const Main = () => {
-  const [rootFolder, setRootFolder] = useState(rootFolderObject);
+const Main = (props) => {
+  const rootFolderObject = generateRootFolder(props.Company);
   const [currentFolderList, setCurrentFolderList] = useState(
     rootFolderObject.children
   );
@@ -25,13 +25,13 @@ const Main = () => {
           icon={'fa-home'}
           className="mt-1 cursor-pointer  hover:text-blue-300"
           onClick={() => {
-            onFolderOpen(rootFolder);
+            onFolderOpen(rootFolderObject);
           }}
         />
         <span className="arrow-right">&gt;</span>
         <BreadCrumb
           pathUrl={currentPath}
-          rootFolder={rootFolder}
+          rootFolder={rootFolderObject}
           onCrumbClick={onFolderOpen}
         />
       </div>
