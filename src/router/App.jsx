@@ -4,7 +4,8 @@ import AppLayout from '@/components/layouts/AppLayout';
 // import Breadcrumb from '../components/folder/Breadcrumb';
 
 const Info = lazy(() => import('@/components/dashboard/Info'));
-const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
+const Charts = lazy(() => import('@/components/dashboard/Charts'));
+const Summary = lazy(() => import('@/components/dashboard/Summary'));
 const Analysis = lazy(() => import('@/components/dashboard/Analysis'));
 const SecFilling = lazy(() => import('@/components/dashboard/SecFilling'));
 const LandingPage = lazy(() => import('@/components/dashboard/Landing'));
@@ -35,7 +36,13 @@ export const routes = () => [
       {
         path: '/charts',
         breadcrumb: 'Charts',
-        element: <Dashboard />,
+        element: <Charts />,
+        caseSensitive: true
+      },
+      {
+        path: '/summary',
+        breadcrumb: 'Summary',
+        element: <Summary />,
         caseSensitive: true
       },
       {
