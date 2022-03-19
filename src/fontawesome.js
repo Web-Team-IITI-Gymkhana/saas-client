@@ -29,6 +29,10 @@ import {
     faGlobe,
     faPhone,
     faFax
+    faFolderOpen,
+    faHome,
+    faFileInvoiceDollar,
+    faFileContract
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -60,6 +64,8 @@ library.add(
     faGoogle,
     faBuilding,
     faGlobe,
-    faPhone,
-    faFax
+    faFax,
+    faFolderOpen,
+    faHome,
+    faFileContract
 )

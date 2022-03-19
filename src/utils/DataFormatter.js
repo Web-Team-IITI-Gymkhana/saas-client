@@ -19,6 +19,9 @@ export class DataFormatter {
     getAllFeatures() {
         return Object.keys(Object.values(data[this.companyId]['_10k'])[0].features)
     }
+    getAllSECFillings() {
+        return Object.keys(Object.values(data[this.companyId]['_10k'])[0].sec_filing)
+    }
     getQuarterlyFeatureData(featureName) {
         const list = []
         const quarters = Object.keys(data[this.companyId]['_10q'])
