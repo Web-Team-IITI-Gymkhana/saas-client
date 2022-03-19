@@ -1,4 +1,5 @@
 function get_filings(obj, curPath) {
+
   let children = [];
 
   // console.log(obj.sec_filing)
@@ -30,7 +31,7 @@ function get_year(obj, curPath) {
       content: null
     });*/
   for (let item of obj) {
-    console.log(item)
+    //  console.log(item)
     children.push({
       name: item.id,
       path: `${curPath}`,
@@ -63,6 +64,7 @@ function get_forms(obj) {
 }
 
 const generateRootFolder = (obj) => {
+  //console.log(obj)
   return {
     name: 'root',
     path: '',
