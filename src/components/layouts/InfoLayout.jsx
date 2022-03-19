@@ -1,14 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CircularProgress, Box, Typography } from '@mui/material';
 import ScoreChart from '../base/molecules/Charts/ScoreChart';
 
-const InfoLayout = ({ data }) => {
+const InfoLayout = ({ data, scores }) => {
   const [progress, setProgress] = React.useState(0);
   const [color, setColor] = React.useState('red');
 
   const max_prog = 80;
-
+  console.log('scor', scores);
   React.useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
@@ -27,7 +26,7 @@ const InfoLayout = ({ data }) => {
           <div className="text-4xl text-saas-accent font-black">
             {data.CompanyName}
           </div>
-          {data.URL != 'NaN' ? (
+          {data.URL !== 'NaN' ? (
             <div className="flex flex-row pt-1">
               <div className="text-lg text-saas-primary">
                 <FontAwesomeIcon icon={'globe'} />
@@ -41,19 +40,19 @@ const InfoLayout = ({ data }) => {
           ) : null}
         </div>
         <div className="pr-10">
-          {data.HoldingType != 'NaN' ? (
+          {data.HoldingType !== 'NaN' ? (
             <div className="text-lg font-extrabold flex flex-row">
               <div className="text-saas-accent">Holding :</div>
               <div className="text-saas-primary pl-1">{data.HoldingType}</div>
             </div>
           ) : null}
-          {data.Ticker != 'NaN' ? (
+          {data.Ticker !== 'NaN' ? (
             <div className="text-lg font-extrabold flex flex-row">
               <div className="text-saas-accent">Stock Ticker :</div>
               <div className="text-saas-primary pl-1">{data.Ticker}</div>
             </div>
           ) : null}
-          {data.Exchange != 'NaN' ? (
+          {data.Exchange !== 'NaN' ? (
             <div className="text-lg font-extrabold flex flex-row">
               <div className="text-saas-accent">Exchange :</div>
               <div className="text-saas-primary pl-1">{data.Exchange}</div>
@@ -61,7 +60,7 @@ const InfoLayout = ({ data }) => {
           ) : null}
         </div>
       </div>
-      {data.IPODate != 'NaN' ? (
+      {data.IPODate !== 'NaN' ? (
         <div className="flex flex-row pt-5">
           <div className="text-xl py-0 text-saas-accent font-bold">
             IPO Date :
@@ -71,7 +70,7 @@ const InfoLayout = ({ data }) => {
           </div>
         </div>
       ) : null}
-      {data.Address != 'NaN' ? (
+      {data.Address !== 'NaN' ? (
         <div className="flex flex-row pt-5">
           <div className="pt-2.5">
             <FontAwesomeIcon icon={'building'} className="pr-3 text-4xl" />
@@ -86,7 +85,7 @@ const InfoLayout = ({ data }) => {
           </div>
         </div>
       ) : null}
-      {data.PhoneNumber != 'NaN' ? (
+      {data.PhoneNumber !== 'NaN' ? (
         <div className="flex flex-row pt-5">
           <div className="pt-2.5">
             <FontAwesomeIcon icon={'phone'} className="pr-3 text-4xl" />
@@ -101,7 +100,7 @@ const InfoLayout = ({ data }) => {
           </div>
         </div>
       ) : null}
-      {data.FaxNumber != 'NaN' ? (
+      {data.FaxNumber !== 'NaN' ? (
         <div className="flex flex-row pt-5">
           <div className="pt-2.5">
             <FontAwesomeIcon icon={'fax'} className="pr-3 text-4xl" />
@@ -116,15 +115,23 @@ const InfoLayout = ({ data }) => {
           </div>
         </div>
       ) : null}
-      <div className="flex flex-col  pt-10">
-        <div className="text-2xl font-bold pl-2">Score</div>
-        <div className="flex flex-row justify-around  pt-5">
-          <ScoreChart data={40} label="2019" width="60%" />
-          <ScoreChart data={40} label="2019" width="60%" />
-          <ScoreChart data={40} label="2019" width="60%" />
-          <ScoreChart data={40} label="2019" width="60%" />
+      {scores && scores.length > 0 ? (
+        <div className="flex flex-col  pt-10">
+          <div className="text-2xl font-bold pl-2">Investability Score</div>
+          <div className="flex flex-row justify-around  pt-5">
+            {scores.map((score, index) => {
+              return (
+                <ScoreChart
+                  key={index}
+                  data={Math.round(score.score * 100, 2)}
+                  label={score.year}
+                  width="60%"
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

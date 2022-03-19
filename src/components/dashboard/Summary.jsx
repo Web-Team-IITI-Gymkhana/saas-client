@@ -7,16 +7,16 @@ const { TabPane } = Tabs;
 
 const Summary = () => {
   const myContext = useContext(Context);
-  const Company = myContext.selectedCompany;
+  const Companies = myContext.selectedCompanies;
 
-  if (!Company) {
+  if (!Companies[0]) {
     return <div>No Company Selected</div>;
   }
-  if (!Company._8k || Company._8k.length === 0) {
+  if (!Companies[0]._8k || Companies[0]._8k.length === 0) {
     return <div>No Data Available</div>;
   }
   //   const summaryList = Company._8k;
-  const formData8K = Company._8k;
+  const formData8K = Companies[0]._8k;
   // const summaryList = transform_8k_idk_if_this_is_temporary(formData8K);
   return (
     <Tabs className="text-saasdisabled h-full" defaultActiveKey="1">

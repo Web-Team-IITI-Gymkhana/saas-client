@@ -13,6 +13,10 @@ const query = gql`
             IPODate
             exchange
             ticker
+            score {
+              year
+              score
+            }
             _10k {
               id
               DocURL

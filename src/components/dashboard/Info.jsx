@@ -1,12 +1,14 @@
 import React, { useContext } from 'react';
 import InfoLayout from '../layouts/InfoLayout';
 import Context from '../../context/context-config';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Info = (props) => {
   const myContext = useContext(Context);
-  const curCompany = myContext.selectedCompany;
+  const curCompany = myContext.selectedCompanies[0];
+  if (!curCompany) {
+    return <div>No Company Selected</div>;
+  }
+  console.log(curCompany);
   const meta_data = {
     Address: curCompany['Address'],
     CompanyName: curCompany['CompanyName'],
@@ -19,7 +21,7 @@ const Info = (props) => {
     Exchange: curCompany['exchange']
   };
 
-  return <InfoLayout data={meta_data} />;
+  return <InfoLayout data={meta_data} scores={curCompany.score} />;
 };
 
 export default Info;
