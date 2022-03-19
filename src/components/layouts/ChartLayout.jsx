@@ -101,9 +101,8 @@ const ChartLayout = ({ id, formData, title, description, cta, children }) => {
         </div>
         {/* {cta} */}
       </div>
-      <div>
-        <Summary summaryList={summaryList} />
-      </div>
+
+      <Summary summaryList={summaryList} />
     </div>
   );
 };
