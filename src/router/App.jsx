@@ -49,8 +49,7 @@ export const routes = () => [
         breadcrumb: ' SEC Fillings ',
         element: <SecFilling />,
         caseSensitive: true
-      },
-
+      }
     ]
   },
   {

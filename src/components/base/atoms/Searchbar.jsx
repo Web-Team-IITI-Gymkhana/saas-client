@@ -24,6 +24,7 @@ export default function AnimatedMulti({ style_prop }) {
 
   useEffect(() => {
     const fetchCompany = async () => {
+      setLoading(true);
       const companyCIK = `${searchText}`;
       // try {
       //   if (searchText === null || searchText === '') {
@@ -54,6 +55,7 @@ export default function AnimatedMulti({ style_prop }) {
         navigate('/info');
       } catch (err) {
         console.error(err);
+        setLoading(false);
       }
     };
 
@@ -151,7 +153,7 @@ export default function AnimatedMulti({ style_prop }) {
         setSearchText('');
       }}
     >
-      <div className="flex 1-p">
+      <div className="flex 1-p gap-2">
         <Select
           placeholder={<Placeholder />}
           label="Single select"
@@ -168,7 +170,7 @@ export default function AnimatedMulti({ style_prop }) {
           autoFocus={true}
           on
         />
-        {loading && <Loading />}
+        <span>{loading && <Loading />}</span>
       </div>
     </ErrorBoundary>
   );
