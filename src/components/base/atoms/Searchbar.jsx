@@ -1,23 +1,65 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState } from 'react';
+import { transparent } from 'daisyui/src/colors';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
+import client from '../../../apollo/index';
+import { companyList } from '../../../utils/companies';
+import { gql } from '@apollo/client';
+
+// const GET_COMPANY = async(e.value) => {
+//   if (e.value == '') {
+//     return [];
+//   }
+// }
+// const res = await client.query({
+//   query {
+//   getCompanyByCIK(cik: "1013462") {
+//     CompanyName
+//   }
+// }
+// });
 
 const animatedComponents = makeAnimated();
-const Companies = [
-  { value: 'Microsoft', label: 'Microsoft' },
-  { value: 'Ubisoft', label: 'Ubisoft' },
-  { value: 'Activision', label: 'Activision' }
-];
 
 export default function AnimatedMulti() {
-  const [Company, setCompany] = useState({});
+  const [Company, setCompany] = useState();
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const fetchCompany = async () => {
+      const companyCIK = `${searchText}`;
+      console.log(companyCIK);
+      const query = gql`
+        query getCompanyByCIK($cik: String!) {
+          getCompanyByCIK(cik: $cik) {
+            CompanyName
+          }
+        }
+      `;
+
+      const res = await client.query({
+        query: query,
+        variables: {
+          cik: companyCIK
+        }
+      });
+
+      console.log(res.data);
+    };
+
+    fetchCompany();
+  }, [searchText]);
+
+  const handleInputChange = (e) => {
+    setSearchText(e.value);
+  };
 
   const customStyles = {
     control: (base) => ({
       ...base,
       borderRadius: '20px !important',
-      background: '#152033',
+      background: transparent,
       // border: '0px!important',
       width: '200px',
       // boxShadow: 'none',
@@ -29,11 +71,11 @@ export default function AnimatedMulti() {
     }),
     singleValue: (base) => ({
       ...base,
-      color: '#ffffff'
+      color: '#3547ac'
     }),
     input: (provided) => ({
       ...provided,
-      color: '#ffffff'
+      color: '#000000'
     }),
     option: (provided, state) => ({
       ...provided,
@@ -75,15 +117,19 @@ export default function AnimatedMulti() {
   return (
     <Select
       placeholder={<Placeholder />}
+      label="Single select"
       isSearchable={true}
-      onChange={setCompany}
+      onChange={(e) => {
+        handleInputChange(e);
+      }}
       styles={customStyles}
       noOptionsMessage={() => 'No company in the database'}
       className="text-center font-bold text-white border-0 focus:ring-0"
       isClearable
       backspaceRemovesValue
-      options={Companies}
+      options={companyList}
       autoFocus={true}
+      on
     />
   );
 }

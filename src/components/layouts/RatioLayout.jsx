@@ -25,7 +25,7 @@ const RatioLayout = ({ id, formData, title, description, cta, children }) => {
           {title}
           <span className="text-xs">{description}</span>
         </div>
-        {cta}
+        {/* {cta} */}
       </div>
       <div className="w-full grow pt-10">
         {children || <DefaultComponent title={title} />}

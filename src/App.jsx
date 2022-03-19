@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from '@/router/App';

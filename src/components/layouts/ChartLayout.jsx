@@ -9,27 +9,32 @@ const summaryList = [
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
     sentiment: 'Negative'
-  },   {
+  },
+  {
     sentence:
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
     sentiment: 'Positive'
-  }, {
+  },
+  {
     sentence:
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
     sentiment: 'Negative'
-  },{
+  },
+  {
     sentence:
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
     sentiment: 'Negative'
-  },{
+  },
+  {
     sentence:
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
     sentiment: 'Negative'
-  },{
+  },
+  {
     sentence:
       'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
     date: '2020-08-05',
@@ -94,9 +99,10 @@ const ChartLayout = ({ id, formData, title, description, cta, children }) => {
         <div className="w-full grow pt-10">
           {children || <DefaultComponent title={title} />}
         </div>
+        {/* {cta} */}
       </div>
       <div>
-        <Summary summaryList={summaryList}/>
+        <Summary summaryList={summaryList} />
       </div>
     </div>
   );
