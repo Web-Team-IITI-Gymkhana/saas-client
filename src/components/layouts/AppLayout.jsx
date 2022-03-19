@@ -1,34 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '@/components/base/molecules/sidebar';
 import DashboardLayout from './Dashboard';
 import Searchbar from '../base/atoms/Searchbar';
-import client from '../../apollo/';
-
-import { gql } from '@apollo/client';
 
 const AppLayout = () => {
-  // const [companies, setCompanies] = useState();
-
-  // useEffect(() => {
-  //   const fetchCompanies = async () => {
-  //     const res = await client.query({
-  //       query: gql`
-  //         query {
-  //           getAllCompanies {
-  //             id
-  //             CompanyName
-  //           }
-  //         }
-  //       `
-  //     });
-
-  //     console.log(res.data);
-  //   };
-
-  //   fetchCompanies();
-  // }, []);
-
   return (
     <div className="flex h-screen overflow-hidden bg-saas-background text-saas-accent ">
       <div className="flex h-full">

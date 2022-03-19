@@ -2,10 +2,12 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import millify from 'millify';
 
-function SyncedChart({ data, label, group, id, type, width, height }) {
-  const categories = data.map((d) => d.name);
-  const values = data.map((d) => d[label]);
-  //console.log(label);
+function SyncedChart({ names, data, label, group, id, type, width, height }) {
+  const categories = data[0].map((d) => d.name);
+  const valuesArray = data.map((company) => {
+    return company.map((d) => d[label]);
+  });
+  console.log(valuesArray);
   const options = {
     chart: {
       id: id,
@@ -51,12 +53,12 @@ function SyncedChart({ data, label, group, id, type, width, height }) {
       intersect: false
     }
   };
-  const series = [
-    {
-      name: label,
+  const series = valuesArray.map((values, index) => {
+    return {
+      name: names[index],
       data: values
-    }
-  ];
+    };
+  });
   return (
     <Chart
       options={options}

@@ -2,8 +2,8 @@ import React from 'react';
 import { chartDataGenerator } from '../../utils/ChartDataGenerator';
 import SyncedChart from '../base/molecules/Charts/SyncedChart';
 
-const ChartLayout = ({ label, formData }) => {
-  const chartData = chartDataGenerator(label, formData);
+const ChartLayout = ({ names, label, formData }) => {
+  const chartsData = formData.map((fd) => chartDataGenerator(label, fd));
   const DefaultComponent = () => {
     const id = `id${label}ind`;
     return (
@@ -13,7 +13,8 @@ const ChartLayout = ({ label, formData }) => {
           className="p-3"
         >
           <SyncedChart
-            data={chartData}
+            names={names}
+            data={chartsData}
             label={label}
             id={id}
             type={'bar'}
