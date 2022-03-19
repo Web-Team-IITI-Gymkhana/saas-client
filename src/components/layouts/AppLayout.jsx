@@ -10,7 +10,7 @@ const AppLayout = () => {
       <div className="flex h-full">
         <Sidebar />
       </div>
-      <div className="flex flex-col h-full w-full overflow-x-hidden overflow-y-auto mb-14">
+      <div className="flex flex-col h-full w-full overflow-y-hidden overflow-x-hidden mb-14">
         <DashboardLayout cta={<Searchbar />}>
           <Outlet />
         </DashboardLayout>
