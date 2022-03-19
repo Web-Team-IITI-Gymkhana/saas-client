@@ -3,7 +3,6 @@ import { Tabs } from 'antd';
 
 import ChartLayout from '@/components/layouts/ChartLayout';
 
-import dummy from '../../../demo.json';
 import { isInsufficientData } from '../../utils/utils';
 import { FEATURES } from '../../constants';
 import Context from '../../context/context-config';
@@ -30,28 +29,28 @@ const Home = () => {
 
   return (
     <Tabs className="text-saasdisabled h-full" defaultActiveKey="1">
-      {Object.keys(FEATURES).map((id, index) => {
-        if (isInsufficientData(formDataQ, 'features', id)) {
-          if (isInsufficientData(formDataK, 'features', id)) {
+      {Object.keys(FEATURES).map((label, index) => {
+        if (isInsufficientData(formDataQ, 'features', label)) {
+          if (isInsufficientData(formDataK, 'features', label)) {
             return null;
           }
           return (
             <TabPane
               className="h-full hover:text-saasselected"
-              tab={id}
+              tab={label}
               key={index + 1}
             >
-              <ChartLayout id={id} formData={formDataK} title={id} />
+              <ChartLayout label={label} formData={formDataK} />
             </TabPane>
           );
         }
         return (
           <TabPane
             className="h-full hover:text-saasselected"
-            tab={id}
+            tab={label}
             key={index + 1}
           >
-            <ChartLayout id={id} formData={formDataQ} title={id} />
+            <ChartLayout label={label} formData={formDataQ} />
           </TabPane>
         );
       })}

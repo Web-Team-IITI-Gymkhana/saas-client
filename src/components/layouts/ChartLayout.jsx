@@ -1,6 +1,5 @@
 import React from 'react';
 import { chartDataGenerator } from '../../utils/ChartDataGenerator';
-import LineChart from '../base/molecules/Charts/LineChart';
 import Summary from '../base/molecules/Summary';
 import SyncedChart from '../base/molecules/Charts/SyncedChart';
 
@@ -78,17 +77,24 @@ const summaryList = [
     sentiment: 'Neutral'
   }
 ];
-const ChartLayout = ({ id, formData, title, description, cta, children }) => {
-  const chartData = chartDataGenerator(id, formData);
-  const DefaultComponent = ({ title }) => {
+const ChartLayout = ({ label, formData }) => {
+  const chartData = chartDataGenerator(label, formData);
+  const DefaultComponent = () => {
+    const id = `id${label}ind`;
     return (
       <div className="flex flex-col">
         <div
           style={{ width: 'var(--chart-w)', height: 'var(--chart-h-lg)' }}
           className="p-3"
         >
-          <SyncedChart data={chartData} label={id} />
-          {/* <LineChart title={title} data={chartData} label={id} /> */}
+          <SyncedChart
+            data={chartData}
+            label={label}
+            id={id}
+            type={'bar'}
+            width="var(--chart-w)"
+            height="var(--chart-h-lg)"
+          />
         </div>
       </div>
     );
@@ -96,14 +102,9 @@ const ChartLayout = ({ id, formData, title, description, cta, children }) => {
   return (
     <div className="flex flex-row h-full w-full ml-2 p-6">
       <div className="flex flex-col h-full w-9/12 bg-saas-main ml-2 rounded-xl drop-shadow-sm p-6 hover:drop-shadow-xl">
-        <div className="flex flex-row justify-between items-center">
-          <div className="text-xl text-saas-accent">
-            {title}
-            <span className="text-xs">{description}</span>
-          </div>
-          {cta}
+        <div className="w-full grow pt-10">
+          <DefaultComponent />
         </div>
-        {/* {cta} */}
       </div>
       <div className="w-full grow pt-10">
         {children || <DefaultComponent title={title} />}

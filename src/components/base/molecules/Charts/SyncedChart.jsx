@@ -1,14 +1,31 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
-function SyncedChart(props) {
-  const categories = props.data.map((d) => d.name);
-  const values = props.data.map((d) => d[props.label]);
-  const options1 = {
+import millify from 'millify';
+
+function SyncedChart({ data, label, group, id, type, width, height }) {
+  const categories = data.map((d) => d.name);
+  const values = data.map((d) => d[label]);
+  //console.log(label);
+  const options = {
     chart: {
-      id: 1,
-      group: props.label
+      id: id,
+      group: group,
+      height: height,
+      width: width
     },
-    labels: {
+    title: {
+      text: label,
+      align: 'left',
+      floating: true
+    },
+    stroke: {
+      curve: 'smooth',
+      width: 1.5
+    },
+    dataLabels: {
+      enabled: false
+    },
+    markers: {
       show: false
     },
     xaxis: {
@@ -16,63 +33,38 @@ function SyncedChart(props) {
     },
     yaxis: {
       labels: {
-        minWidth: 40
+        minWidth: width,
+        formatter: (value) => {
+          return millify(value, {
+            units: ['', 'K', 'M', 'B', 'T', 'P'],
+            space: true,
+            precision: 3
+          });
+        }
       }
     },
     tooltip: {
+      enabled: true,
+      theme: 'dark',
+      x: { show: false },
       shared: true,
-      x: { show: false }
-    }
-  };
-  const options2 = {
-    chart: {
-      id: 2,
-      group: props.label
-    },
-    labels: {
-      show: false
-    },
-    xaxis: {
-      categories: categories
-    },
-    yaxis: {
-      labels: {
-        minWidth: 40
-      },
-      tooltip: {
-        enabled: false
-      }
-    },
-    tooltip: {
-      shared: true,
-      marker: false,
-      y: { formatter: undefined },
-      x: { show: false }
+      intersect: false
     }
   };
   const series = [
     {
-      name: props.id,
+      name: label,
       data: values
     }
   ];
   return (
-    <>
-      <Chart
-        options={options1}
-        series={series}
-        type="line"
-        width="100%"
-        height={'100%'}
-      />
-      <Chart
-        options={options2}
-        series={series}
-        type="line"
-        width="100%"
-        height={'100%'}
-      />
-    </>
+    <Chart
+      options={options}
+      series={series}
+      type={type}
+      width="100%"
+      height="100%"
+    />
   );
 }
 
