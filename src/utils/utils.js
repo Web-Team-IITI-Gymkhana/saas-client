@@ -10,11 +10,14 @@ export const isNotDefined = (features) => {
 }
 
 export const isInsufficientData = (form, key, feature) => {
+    if (!form || form.length === 0) {
+        return true
+    }
     let nodata = 0;
     let n = 0;
-    Object.keys(form).forEach((year) => {
+    form.forEach((year) => {
         n++;
-        if (form[year][key][feature] === NOT_DEFINED) {
+        if (year[key][feature] === NOT_DEFINED) {
             nodata++;
         }
     })

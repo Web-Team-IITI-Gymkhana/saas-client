@@ -1,8 +1,3 @@
-import _obj from '../../../demo.json';
-// obj = require('./demo.json');
-
-let obj = _obj[1459417];
-
 function get_filings(obj, curPath) {
   let children = [];
 
@@ -57,13 +52,14 @@ function get_forms(obj) {
   return children;
 }
 
-const rootFolder = {
-  name: 'root',
-  path: '',
-  children: get_forms(obj),
-  isFolder: true,
-  content: null
-};
+const generateRootFolder = (obj) => {
+  return {
+    name: 'root',
+    path: '',
+    children: get_forms(obj),
+    isFolder: true,
+    content: null
+  };
+}
 
-export default rootFolder;
-//console.log(rootFolder);
+export { generateRootFolder };
