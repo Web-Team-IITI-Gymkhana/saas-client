@@ -2,7 +2,7 @@
 import React from 'react';
 import FolderItem from './FolderItem';
 import FileItem from './FileItem';
-export default function ({ folderListArr, onFolderOpen }) {
+export default function folderList({ folderListArr, onFolderOpen }) {
   // console.log(folderListArr);
   return folderListArr.length ? (
     <div className="grid   lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-1 grid-flow-row place-content-start gap-8 bg-gray-100 bg-opacity-60 p-6 rounded-xl h-full mt-4  ">
