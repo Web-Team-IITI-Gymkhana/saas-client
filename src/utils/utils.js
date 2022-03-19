@@ -1,4 +1,7 @@
 import { NOT_DEFINED } from "../constants"
+import client from '../apollo/index'
+import { query } from '../apollo/queries'
+
 
 export const isNotDefined = (features) => {
     for (let feature of features) {
@@ -25,4 +28,32 @@ export const isInsufficientData = (form, key, feature) => {
         return true
     }
     return false
+}
+
+export const getCompanyDataFromCIK = async (companyCIK) => {
+
+    let error = null;
+    let data = null;
+    try {
+        if (companyCIK === null || companyCIK === '') {
+            error = "Company CIK is null or undefined"
+            throw error
+        }
+        const res = await client.query({
+            query: query,
+            variables: {
+                cik: companyCIK
+            },
+            // pollInterval: 500
+            refetchQueries: [{ query }]
+        });
+
+        data = res
+    } catch (err) {
+        error = err
+        console.error(err);
+        throw err
+    }
+
+    return { res: data, error }
 }

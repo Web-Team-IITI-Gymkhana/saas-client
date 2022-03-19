@@ -12,6 +12,8 @@ import Loading from '../atoms/Loading';
 
 import { ErrorBoundary } from 'react-error-boundary';
 
+import { getCompanyDataFromCIK } from '../../../utils/utils';
+
 const animatedComponents = makeAnimated();
 
 export default function AnimatedMulti({ style_prop }) {
@@ -22,20 +24,31 @@ export default function AnimatedMulti({ style_prop }) {
 
   useEffect(() => {
     const fetchCompany = async () => {
-      try {
-        const companyCIK = `${searchText}`;
-        if (searchText === null || searchText === '') {
-          return;
-        }
-        const res = await client.query({
-          query: query,
-          variables: {
-            cik: companyCIK
-          },
-          // pollInterval: 500
-          refetchQueries: [{ query }]
-        });
+      const companyCIK = `${searchText}`;
+      // try {
+      //   if (searchText === null || searchText === '') {
+      //     return;
+      //   }
+      //   const res = await client.query({
+      //     query: query,
+      //     variables: {
+      //       cik: companyCIK
+      //     },
+      //     // pollInterval: 500
+      //     refetchQueries: [{ query }]
+      //   });
 
+      // myContext.setSelectedCompany(res.data.getCompanyByCIK);
+      // setLoading(false);
+      // navigate('/info');
+      // } catch (err) {
+      //   console.error(err);
+      // }
+
+      try {
+        const { res, error } = await getCompanyDataFromCIK(companyCIK);
+        // console.log(data);
+        if (error) throw error;
         myContext.setSelectedCompany(res.data.getCompanyByCIK);
         setLoading(false);
         navigate('/info');
