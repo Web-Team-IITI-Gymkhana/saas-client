@@ -40,16 +40,16 @@ function get_year(obj, curPath) {
 function get_forms(obj) {
   let children = [
     {
-      name: '_10k',
+      name: '10-K',
       path: '',
-      children: get_year(obj['_10k'], '_10k/'),
+      children: get_year(obj['_10k'], '10-K/'),
       isFolder: true,
       content: null
     },
     {
-      name: '_10q',
+      name: '10-Q',
       path: '',
-      children: get_year(obj['_10q'], '_10q/'),
+      children: get_year(obj['_10q'], '10-Q/'),
       isFolder: true,
       content: null
     }
@@ -66,4 +66,4 @@ const rootFolder = {
 };
 
 export default rootFolder;
-console.log(rootFolder);
+//console.log(rootFolder);

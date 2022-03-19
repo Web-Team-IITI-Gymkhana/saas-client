@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import rootFolderObject from './doingit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FolderList from './FolderList';
-import Breadcrumb from './Breadcrumb';
+import BreadCrumb from './BreadCrumb';
 
-export default function Main() {
+const Main = () => {
   const [rootFolder, setRootFolder] = useState(rootFolderObject);
   const [currentFolderList, setCurrentFolderList] = useState(
     rootFolderObject.children
@@ -20,15 +20,16 @@ export default function Main() {
 
   return (
     <>
-      <div className="flex flex-row  text-xl text-saas-accent space-x-2 font-semibold mt-2">
+      <div className=" flex flex-row  text-xl text-saas-accent  space-x-2 font-semibold mt-2">
         <FontAwesomeIcon
           icon={'fa-home'}
-          className="mt-1"
+          className="mt-1 cursor-pointer  hover:text-blue-300"
           onClick={() => {
             onFolderOpen(rootFolder);
           }}
         />
-        <Breadcrumb
+        <span className="arrow-right">&gt;</span>
+        <BreadCrumb
           pathUrl={currentPath}
           rootFolder={rootFolder}
           onCrumbClick={onFolderOpen}
@@ -41,4 +42,5 @@ export default function Main() {
       />
     </>
   );
-}
+};
+export default Main;

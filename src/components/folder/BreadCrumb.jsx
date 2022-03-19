@@ -3,7 +3,7 @@ import React from 'react';
 
 import { findFolderListInCurrentList } from './Util';
 
-export default function ({ pathUrl, rootFolder, onCrumbClick }) {
+const BreadCrumb = ({ pathUrl, rootFolder, onCrumbClick }) => {
   //  console.log(pathUrl)
   const pathArr = pathUrl.split('/');
   pathArr.splice(pathArr.length - 1, 1);
@@ -12,12 +12,12 @@ export default function ({ pathUrl, rootFolder, onCrumbClick }) {
   //console.log(pathArr);
   return !pathArr.length ? null : (
     <div className="  flex flex-row space-x-2 items-center text-md font-semibold">
-      <div className="bread-crumb-list flex flex-row space-x-2 items-center">
+      <div className=" bread-crumb-list flex flex-row space-x-2 items-center">
         {pathArr.map((name) => {
           tempObj = findFolderListInCurrentList(name, tempFolder);
           tempFolder = tempObj.children.slice();
           return (
-            <div className="  flex flex-row space-x-2 " key={name}>
+            <div className="   flex flex-row space-x-2 " key={name}>
               <BreadcrumbItem folderObj={tempObj} onCrumbClick={onCrumbClick} />
               <span className="arrow-right">&gt;</span>
             </div>
@@ -26,17 +26,19 @@ export default function ({ pathUrl, rootFolder, onCrumbClick }) {
       </div>
     </div>
   );
-}
+};
 
 const BreadcrumbItem = function ({ folderObj, onCrumbClick }) {
   return (
-    <span
-      className="folder-name"
+    <div
+      className="hover:text-blue-300 cursor-pointer "
       onClick={() => {
         onCrumbClick(folderObj);
       }}
     >
       {folderObj.name}
-    </span>
+    </div>
   );
 };
+
+export default BreadCrumb;

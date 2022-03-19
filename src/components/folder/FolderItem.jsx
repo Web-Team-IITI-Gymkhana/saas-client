@@ -5,7 +5,7 @@ import React from 'react';
 const FolderItem = ({ folderObj, onFolderOpen }) => {
   return (
     <div
-      className="cursor-pointer w-40  bg-white hover:bg-opacity-100 bg-opacity-80 
+      className=" cursor-pointer w-40  bg-white hover:bg-opacity-100 bg-opacity-80 
     text-saas-header text-opacity-5 hover:text-opacity-5 rounded-xl border    p-4 flex flex-col justify-between drop-shadow-lg hover:drop-shadow-md h-44"
       onClick={() => onFolderOpen(folderObj)}
     >
