@@ -1,34 +1,54 @@
 import React from 'react';
 import { MATRICS } from '../../constants';
 import { chartDataGenerator } from '../../utils/ChartDataGenerator';
-import BarChart from '../base/molecules/Charts/BarChart';
-import LineChart from '../base/molecules/Charts/LineChart';
+import SyncedChart from '../base/molecules/Charts/SyncedChart';
 
-const RatioLayout = ({ id, formData, title, description, cta, children }) => {
-  const matrics = MATRICS[id];
-  const matricsData = chartDataGenerator(id, formData);
-  const DefaultComponent = ({ title }) => {
+const RatioLayout = ({ label, formData, title }) => {
+  const matrics = MATRICS[label];
+  const matricsData = chartDataGenerator(label, formData);
+  const DefaultComponent = () => {
+    const makeRatioId = `id${label}${label}`;
     return (
       <div className="flex flex-col">
         {matrics.dependency.map((dep, index) => {
           const data = chartDataGenerator(dep, formData);
-          return <BarChart key={index} title={title} label={dep} data={data} />;
+          const makeId = `id${label}${dep}`;
+          return (
+            <div
+              key={index}
+              className="w-11/12 "
+              style={{ height: 'var(--chart-h)' }}
+            >
+              <SyncedChart
+                data={data}
+                label={dep}
+                id={makeId}
+                group={label}
+                type={'area'}
+                width="var(--chart-w)"
+                height="var(--chart-h)"
+              />
+            </div>
+          );
         })}
-        <LineChart title={title} data={matricsData} label={id} />
+        <div className="w-11/12" style={{ height: 'var(--chart-h)' }}>
+          <SyncedChart
+            id={makeRatioId}
+            data={matricsData}
+            label={label}
+            group={label}
+            type={'area'}
+            width="var(--chart-w)"
+            height="var(--chart-h)"
+          />
+        </div>
       </div>
     );
   };
   return (
-    <div className="flex flex-col h-full w-4/6 bg-saas-main ml-2 rounded-xl drop-shadow-sm p-6 hover:drop-shadow-xl">
-      <div className="flex flex-row justify-between items-center">
-        <div className="text-xl text-saas-accent pl-10">
-          {title}
-          <span className="text-xs">{description}</span>
-        </div>
-        {/* {cta} */}
-      </div>
-      <div className="w-full grow pt-10">
-        {children || <DefaultComponent title={title} />}
+    <div className="flex flex-col h-full w-11/12 bg-saas-main ml-2 rounded-xl drop-shadow-sm p-6 hover:drop-shadow-xl">
+      <div className="w-full grow">
+        <DefaultComponent />
       </div>
     </div>
   );

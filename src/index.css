@@ -17,9 +17,9 @@
   --main: #fff;
   --header: #1b223d;
   --chart-w: 50vw;
-  --chart-h: 20vh;
+  --chart-h: 24vh;
   --chart-w-lg: 50vw;
-  --chart-h-lg: 20vh;
+  --chart-h-lg: 30vh;
 }
 .ant-tabs-nav {
   @apply border-b-gray-200 border-b-2;
