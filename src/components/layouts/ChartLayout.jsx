@@ -106,10 +106,6 @@ const ChartLayout = ({ label, formData }) => {
           <DefaultComponent />
         </div>
       </div>
-      <div className="w-full grow pt-10">
-        {children || <DefaultComponent title={title} />}
-      </div>
-
       <Summary summaryList={summaryList} />
     </div>
   );
