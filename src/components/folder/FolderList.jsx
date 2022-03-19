@@ -5,7 +5,7 @@ import FileItem from './FileItem';
 export default function ({ folderListArr, onFolderOpen }) {
   // console.log(folderListArr);
   return folderListArr.length ? (
-    <div className="grid  grid-cols-5 grid-flow-row place-content-start gap-8 bg-gray-100 bg-opacity-60 p-6 rounded-xl h-full mt-4   ">
+    <div className="grid overflow-visible  grid-cols-5 grid-flow-row  gap-8 bg-gray-100 bg-opacity-60 p-6 rounded-xl h-full mt-4  ">
       {folderListArr.map((item) =>
         item.isFolder ? (
           <FolderItem

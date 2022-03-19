@@ -20,11 +20,21 @@ function get_year(obj, curPath) {
   let children = [];
   // console.log(Object.keys(obj));
   // Object.keys(obj).forEach((name) =>
-  for (let name of Object.keys(obj)) {
+  /*for (let name of Object.keys(obj)) {
+    console.log(name)
     children.push({
       name: name,
       path: `${curPath}`,
       children: get_filings(obj[name], `${curPath}${name}/`),
+      isFolder: true,
+      content: null
+    });*/
+  for (let item of obj) {
+    console.log(item)
+    children.push({
+      name: item.id,
+      path: `${curPath}`,
+      children: get_filings(item, `${curPath}${item.id}/`),
       isFolder: true,
       content: null
     });

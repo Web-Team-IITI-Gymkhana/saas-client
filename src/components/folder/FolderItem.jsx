@@ -3,6 +3,7 @@ import folderIcon from '../../assets/img/folderIcon.png';
 import React from 'react';
 
 const FolderItem = ({ folderObj, onFolderOpen }) => {
+  // console.log(folderObj);
   return (
     <div
       className=" cursor-pointer w-40  bg-white hover:bg-opacity-100 bg-opacity-80 
