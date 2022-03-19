@@ -21,13 +21,13 @@ const Sidebar = () => {
               Charts
             </SidebarTopItem>
             <SidebarTopItem to="/analysis" icon="brain">
-              Analysic
+              Analysis
             </SidebarTopItem>
             <SidebarTopItem to="/secfilling" icon="database">
               SEC Fillings
             </SidebarTopItem>
             <SidebarTopItem to="/4" icon="chart-bar">
-              Comparision
+              Comparison
             </SidebarTopItem>
           </div>
         </div>
