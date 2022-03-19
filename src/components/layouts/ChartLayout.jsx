@@ -96,10 +96,10 @@ const ChartLayout = ({ id, formData, title, description, cta, children }) => {
           </div>
           {cta}
         </div>
-        <div className="w-full grow pt-10">
-          {children || <DefaultComponent title={title} />}
-        </div>
         {/* {cta} */}
+      </div>
+      <div className="w-full grow pt-10">
+        {children || <DefaultComponent title={title} />}
       </div>
 
       <Summary summaryList={summaryList} />
