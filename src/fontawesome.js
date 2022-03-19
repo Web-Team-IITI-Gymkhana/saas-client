@@ -28,7 +28,7 @@ import {
     faBuilding,
     faGlobe,
     faPhone,
-    faFax
+    faFax,
     faFolderOpen,
     faHome,
     faFileInvoiceDollar,
