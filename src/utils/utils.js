@@ -50,3 +50,17 @@ export const getCompanyDataFromCIK = async (companyCIK) => {
         throw err
     }
 }
+    
+export const combineCluster = (summaryList) => {
+    let arr = [];
+    for (let i = 0; i < 4; i++) {
+        arr = arr.concat(summaryList[`_${i}`]);
+    }
+    arr.sort((a, b)=>{
+        let keyA = new Date(a.date), keyB = new Date(b.date);
+        if (keyA > keyB) return -1;
+        if (keyA < keyB) return 1;
+        return 0;
+    });
+    return arr;
+}

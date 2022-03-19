@@ -5,7 +5,7 @@ import FolderList from './FolderList';
 import BreadCrumb from './BreadCrumb';
 
 const Main = (props) => {
-  const rootFolderObject = generateRootFolder(props.Company);
+  let rootFolderObject = generateRootFolder(props.Company);
   const [currentFolderList, setCurrentFolderList] = useState(
     rootFolderObject.children
   );

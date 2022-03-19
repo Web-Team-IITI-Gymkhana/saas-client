@@ -1,82 +1,7 @@
 import React from 'react';
 import { chartDataGenerator } from '../../utils/ChartDataGenerator';
-import Summary from '../base/molecules/Summary';
 import SyncedChart from '../base/molecules/Charts/SyncedChart';
 
-const summaryList = [
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Negative'
-  },
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Positive'
-  },
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Negative'
-  },
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Negative'
-  },
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Negative'
-  },
-  {
-    sentence:
-      'The company has priced its public offering of 15 million shares of common stock at a price to the public of $24 per share.',
-    date: '2020-08-05',
-    sentiment: 'Negative'
-  },
-  {
-    sentence:
-      'Company has used the net proceeds from the offering of base notes to repay all amounts outstanding under the credit facility.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  },
-  {
-    sentence:
-      'The notes will be convertible into shares of the company\u2019s common stock at an initial conversion rate of 35.3773 shares.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  },
-  {
-    sentence:
-      'Pursuant to the indenture, the notes will be convertible at the company\u2019s option into shares of the company\u2019s common stock.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  },
-  {
-    sentence:
-      'Pricing of base notes on 20, 2020premium of 100% over last reported sale price of company\u2019s common stock.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  },
-  {
-    sentence:
-      'Company to use portion of proceeds from offering to repay all amounts outstanding under term loan.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  },
-  {
-    sentence:
-      'The notes will be convertible at 2u\u2019s option into shares of 2u\u2019s common stock.',
-    date: '2020-04-20',
-    sentiment: 'Neutral'
-  }
-];
 const ChartLayout = ({ names, label, formData }) => {
   const chartsData = formData.map((fd) => chartDataGenerator(label, fd));
   const DefaultComponent = () => {
@@ -107,7 +32,6 @@ const ChartLayout = ({ names, label, formData }) => {
           <DefaultComponent />
         </div>
       </div>
-      <Summary summaryList={summaryList} />
     </div>
   );
 };

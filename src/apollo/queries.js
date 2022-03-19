@@ -89,6 +89,35 @@ const query = gql`
                 url
               }
             }
+            _8k {
+              id
+              _0 {
+                date
+                sentence
+                sentiment
+              }
+              _1 {
+                date
+                sentence
+                sentiment
+              }
+              _2 {
+                date
+                sentence
+                sentiment
+              }
+              _3 {
+                date
+                sentence
+                sentiment
+              }
+              _4 {
+                date
+                sentence
+                sentiment
+              }
+
+            }
           }
         }
       `;

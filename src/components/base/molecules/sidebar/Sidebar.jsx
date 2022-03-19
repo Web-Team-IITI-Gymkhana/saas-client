@@ -13,12 +13,15 @@ const Sidebar = () => {
       <div className="w-full">
         <SidebarLogo />
         <div className="flex flex-col w-full pl-2 items-center mt-2 border-t border-saas-header">
-            <CompanyProfile>
-              <div className="text-lg">ZOOM INC</div>
-            </CompanyProfile>
+          <CompanyProfile>
+            <div className="text-lg">ZOOM INC</div>
+          </CompanyProfile>
           <div className="flex flex-col w-full pl-3 items-center">
             <SidebarTopItem to="/charts" icon="chart-line">
               Charts
+            </SidebarTopItem>
+            <SidebarTopItem to="/summary" icon="chart-line">
+              Summary
             </SidebarTopItem>
             <SidebarTopItem to="/analysis" icon="brain">
               Analysis
@@ -32,12 +35,12 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <SidebarBottomItem>
-        <div className="flex flex-col items-center">
-          <div className="text-lg pt-3 pb-5">Overall Score</div>
-          {/* <CircularProgress value={60} variant="determinate" color="inherit" /> */}
-        </div>
-      </SidebarBottomItem>
+
+      <div className="flex flex-col justify-center items-center pt-10">
+        <div className="text-2xl font-bold ">Overall Score</div>
+        {/* <CircularProgress value={60} variant="determinate" color="inherit" /> */}
+        <SidebarBottomItem />
+      </div>
     </div>
   );
 };
