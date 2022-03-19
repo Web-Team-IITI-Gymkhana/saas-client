@@ -67,5 +67,7 @@ library.add(
     faFax,
     faFolderOpen,
     faHome,
-    faFileContract
+    faFileContract,
+    faPhone,
+    faFileInvoiceDollar,
 )
