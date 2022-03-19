@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
 import AppLayout from '@/components/layouts/AppLayout';
+// import Breadcrumb from '../components/folder/Breadcrumb';
 
 const Info = lazy(() => import('@/components/dashboard/Info'));
 const Dashboard = lazy(() => import('@/components/dashboard/Charts'));
@@ -32,7 +33,7 @@ export const routes = () => [
       },
       {
         path: '/secfilling',
-        breadcrumb: 'SEC Fillings',
+        breadcrumb: ' SEC Fillings ',
         element: <SecFilling />,
         caseSensitive: true
       }
