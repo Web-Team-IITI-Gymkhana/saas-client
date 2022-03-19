@@ -33,11 +33,12 @@ import {
     faHome,
     faFileInvoiceDollar,
     faFileContract,
-
+    faFileLines
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
     faSearch,
+    faFileLines,
     faChartBar,
     faDashboard,
     faChartLine,

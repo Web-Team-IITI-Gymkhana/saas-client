@@ -1,16 +1,5 @@
 import React, { useContext } from 'react';
 import Searchbar from '../base/atoms/Searchbar';
-// import { Tabs } from 'antd';
-// import RatioLayout from '@/components/layouts/RatioLayout';
-// import dummy from '../../../demo.json';
-// import { generateMatricsData } from '../../utils/MatrixDataGenerator';
-// import { MATRICS } from '../../constants';
-// import { isInsufficientData } from '../../utils/utils';
-// import Context from '../../context/context-config';
-
-// bg-gradient-to-br from-saas-accent via-saas-primary to-saas-main
-// bg-gradient-to-br from-saas-primary to-saas-accent
-//style_prop={{ background: 'white', width: '600px' }}
 
 const LandingPage = () => {
   return (
