@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import InfoLayout from '../layouts/InfoLayout';
 import Context from '../../context/context-config';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Info = (props) => {
   const myContext = useContext(Context);
   const curCompany = myContext.selectedCompany;
-  console.log(curCompany);
-
   const meta_data = {
     Address: curCompany['Address'],
     CompanyName: curCompany['CompanyName'],
